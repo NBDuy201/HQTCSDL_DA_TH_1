@@ -3,61 +3,74 @@
 /* Created on:     11/1/2021 9:24:47 PM                         */
 /*==============================================================*/
 
+Use QLDatChuyenHangOnl
+GO
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CHINHANH_DOITAC_CH_DOITAC') then
+if exists(select 1 from sys.foreign_keys where name='FK_CHINHANH_DOITAC_CH_DOITAC')
+Begin
+    alter table CHINHANH 
+	DROP CONSTRAINT FK_CHINHANH_DOITAC_CH_DOITAC
+End
+
+if exists(select 1 from sys.foreign_keys where name='FK_CHINHANH_HOPDONG_C_HOPDONG')
+Begin
     alter table CHINHANH
-       delete foreign key FK_CHINHANH_DOITAC_CH_DOITAC
-end if;
+	DROP CONSTRAINT FK_CHINHANH_HOPDONG_C_HOPDONG
+End
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CHINHANH_HOPDONG_C_HOPDONG') then
-    alter table CHINHANH
-       delete foreign key FK_CHINHANH_HOPDONG_C_HOPDONG
-end if;
-
-if exists(select 1 from sys.sysforeignkey where role='FK_CHINHANH_CHINHANH__CHINHANH') then
+if exists(select 1 from sys.foreign_keys where name='FK_CHINHANH_CHINHANH__CHINHANH')
+Begin
     alter table CHINHANH_SANPHAM
-       delete foreign key FK_CHINHANH_CHINHANH__CHINHANH
-end if;
+	DROP CONSTRAINT FK_CHINHANH_CHINHANH__CHINHANH
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CHINHANH_CHINHANH__SANPHAM') then
+if exists(select 1 from sys.foreign_keys where name='FK_CHINHANH_CHINHANH__SANPHAM')
+Begin
     alter table CHINHANH_SANPHAM
-       delete foreign key FK_CHINHANH_CHINHANH__SANPHAM
-end if;
+	DROP CONSTRAINT FK_CHINHANH_CHINHANH__SANPHAM
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CHITIETD_CHITIETDO_SANPHAM') then
+if exists(select 1 from sys.foreign_keys where name='FK_CHITIETD_CHITIETDO_SANPHAM')
+Begin
     alter table CHITIETDONHANG_SANPHAM
-       delete foreign key FK_CHITIETD_CHITIETDO_SANPHAM
-end if;
+    DROP CONSTRAINT FK_CHITIETD_CHITIETDO_SANPHAM
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_CHITIETD_CHITIETDO_DONHANG') then
+if exists(select 1 from sys.foreign_keys where name='FK_CHITIETD_CHITIETDO_DONHANG')
+Begin
     alter table CHITIETDONHANG_SANPHAM
-       delete foreign key FK_CHITIETD_CHITIETDO_DONHANG
-end if;
+	DROP CONSTRAINT FK_CHITIETD_CHITIETDO_DONHANG
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_DONHANG_KHACHHANG_KHACHHAN') then
+if exists(select 1 from sys.foreign_keys where name='FK_DONHANG_KHACHHANG_KHACHHAN')
+Begin
     alter table DONHANG
-       delete foreign key FK_DONHANG_KHACHHANG_KHACHHAN
-end if;
+	DROP CONSTRAINT FK_DONHANG_KHACHHANG_KHACHHAN
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_DONHANG_TAIXE_DON_TAIXE') then
+if exists(select 1 from sys.foreign_keys where name='FK_DONHANG_TAIXE_DON_TAIXE')
+Begin
     alter table DONHANG
-       delete foreign key FK_DONHANG_TAIXE_DON_TAIXE
-end if;
+	DROP CONSTRAINT FK_DONHANG_TAIXE_DON_TAIXE
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HOPDONG_DOITAC_HO_DOITAC') then
+if exists(select 1 from sys.foreign_keys where name='FK_HOPDONG_DOITAC_HO_DOITAC')
+Begin
     alter table HOPDONG
-       delete foreign key FK_HOPDONG_DOITAC_HO_DOITAC
-end if;
+	DROP CONSTRAINT FK_HOPDONG_DOITAC_HO_DOITAC
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_TAIXE_KHACHHANG_KHACHHAN') then
+if exists(select 1 from sys.foreign_keys where name='FK_TAIXE_KHACHHANG_KHACHHAN')
+Begin
     alter table TAIXE
-       delete foreign key FK_TAIXE_KHACHHANG_KHACHHAN
-end if;
+	DROP CONSTRAINT FK_TAIXE_KHACHHANG_KHACHHAN
+end
 
-if exists(select 1 from sys.sysforeignkey where role='FK_THEODOIH_HOPDONG_T_HOPDONG') then
+if exists(select 1 from sys.foreign_keys where name='FK_THEODOIH_HOPDONG_T_HOPDONG')
+Begin
     alter table THEODOIHOPDONG
-       delete foreign key FK_THEODOIH_HOPDONG_T_HOPDONG
-end if;
+	DROP CONSTRAINT FK_THEODOIH_HOPDONG_T_HOPDONG
+end
 
 drop table if exists CHINHANH;
 
@@ -226,66 +239,52 @@ create table THEODOIHOPDONG
 alter table CHINHANH
    add constraint FK_CHINHANH_DOITAC_CH_DOITAC foreign key (MADOITAC)
       references DOITAC (MADOITAC)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table CHINHANH
    add constraint FK_CHINHANH_HOPDONG_C_HOPDONG foreign key (MAHOPDONG)
       references HOPDONG (MAHOPDONG)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table CHINHANH_SANPHAM
    add constraint FK_CHINHANH_CHINHANH__CHINHANH foreign key (MACHINHANH)
       references CHINHANH (MACHINHANH)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table CHINHANH_SANPHAM
    add constraint FK_CHINHANH_CHINHANH__SANPHAM foreign key (MASANPHAM)
       references SANPHAM (MASANPHAM)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table CHITIETDONHANG_SANPHAM
    add constraint FK_CHITIETD_CHITIETDO_SANPHAM foreign key (MASANPHAM)
       references SANPHAM (MASANPHAM)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table CHITIETDONHANG_SANPHAM
    add constraint FK_CHITIETD_CHITIETDO_DONHANG foreign key (MADONHANG)
       references DONHANG (MADONHANG)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table DONHANG
    add constraint FK_DONHANG_KHACHHANG_KHACHHAN foreign key (MAKHACHHANG)
       references KHACHHANG (MAKHACHHANG)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table DONHANG
    add constraint FK_DONHANG_TAIXE_DON_TAIXE foreign key (TAI_MAKHACHHANG)
       references TAIXE (MAKHACHHANG)
-      on update restrict
-      on delete restrict;
+      on update cascade
 
 alter table HOPDONG
    add constraint FK_HOPDONG_DOITAC_HO_DOITAC foreign key (MADOITAC)
       references DOITAC (MADOITAC)
-      on update restrict
-      on delete restrict;
 
 alter table TAIXE
    add constraint FK_TAIXE_KHACHHANG_KHACHHAN foreign key (MAKHACHHANG)
       references KHACHHANG (MAKHACHHANG)
-      on update restrict
-      on delete restrict;
 
 alter table THEODOIHOPDONG
    add constraint FK_THEODOIH_HOPDONG_T_HOPDONG foreign key (MAHOPDONG)
       references HOPDONG (MAHOPDONG)
-      on update restrict
-      on delete restrict;
-
+      on update cascade
