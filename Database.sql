@@ -2,8 +2,12 @@
 /* DBMS name:      Sybase SQL Anywhere 12                       */
 /* Created on:     11/1/2021 9:24:47 PM                         */
 /*==============================================================*/
+USE [master]
+GO
+CREATE DATABASE [QLDatChuyenHangOnl]
+GO
 
-Use QLDatChuyenHangOnl
+Use [QLDatChuyenHangOnl]
 GO
 
 if exists(select 1 from sys.foreign_keys where name='FK_CHINHANH_DOITAC_CH_DOITAC')
