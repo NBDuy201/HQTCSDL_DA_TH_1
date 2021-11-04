@@ -161,7 +161,7 @@ create table DONHANG
    DIACHIGIAODEN        varchar(255)                   null,
    HINHTHUCTHANHTOAN    varchar(255)                   null,
    TINHTRANGDONHANG     varchar(255)                   null,
-   ATTRIBUTE_35         numeric(8,2)                   null,
+   PHIVANCHUYEN         numeric(8,2)                   null,
    TONGPHISANPHAM       numeric(8,2)                   null,
    constraint PK_DONHANG primary key (MADONHANG)
 );
