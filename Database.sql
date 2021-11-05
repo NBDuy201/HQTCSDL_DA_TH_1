@@ -127,7 +127,7 @@ create table CHITIETDONHANG_SANPHAM
    MASANPHAM            char(10)                       not null,
    MADONHANG            char(10)                       not null,
    SOLUONGTUONGUNG      numeric                        not null,
-   PHI_SANPHAM          char(10)                       not null,
+   PHISANPHAM           numeric(8,2)                   not null,
    constraint PK_CHITIETDONHANG_SANPHAM primary key (MASANPHAM, MADONHANG)
 );
 
