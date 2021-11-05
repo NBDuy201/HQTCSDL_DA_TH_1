@@ -157,7 +157,7 @@ create table DONHANG
 (
    MADONHANG            char(10)                       not null,
    MAKHACHHANG          char(10)                       not null,
-   TAI_MAKHACHHANG      char(10)                       not null,
+   TAI_MAKHACHHANG      char(10)                       null,
    DIACHIGIAODEN        varchar(255)                   null,
    HINHTHUCTHANHTOAN    varchar(255)                   null,
    TINHTRANGDONHANG     varchar(255)                   null,
