@@ -35,6 +35,11 @@ GO
 CREATE ROLE [StaffROLE] AUTHORIZATION [dbo]
 GO
 GRANT SELECT,UPDATE(THOIGIANHIEULUC, TINHTRANGPHIKICHHOAT) ON [dbo].[HOPDONG] TO [StaffROLE]
+GRANT SELECT ON [dbo].[THEODOIHOPDONG] TO [StaffROLE]
+GRANT EXEC ON Approve_Contract TO [StaffROLE]
+GRANT EXEC ON Extend_Contract TO [StaffROLE]
+GRANT EXEC ON Approve_MonthlyFee TO [StaffROLE]
+GRANT SELECT ON SelectPendingContract TO [StaffROLE]
 GO
 
 --[Phân hệ đối tác(MADOITAC)]---------------------------------------------------

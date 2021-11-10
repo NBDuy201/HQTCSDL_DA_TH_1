@@ -4,6 +4,13 @@
 /*==============================================================*/
 USE [master]
 GO
+
+alter DATABASE [QLDatChuyenHangOnl] set single_user with rollback IMMEDIATE
+GO
+
+DROP DATABASE IF EXISTS [QLDatChuyenHangOnl]
+GO
+
 CREATE DATABASE [QLDatChuyenHangOnl]
 GO
 
@@ -177,8 +184,8 @@ create table HOPDONG
    NGUOIDAIDIEN         varchar(255)                   null,
    SOCHINHANHDANGKI     numeric                        null,
    PHANTRAMHOAHONG      float                          null,
-   THOIGIANHIEULUC      date                           null,
-   TINHTRANGPHIKICHHOAT smallint                       null,
+   THOIGIANHIEULUC      int                            null,
+   TINHTRANGPHIKICHHOAT bit                            null
    constraint PK_HOPDONG primary key (MAHOPDONG)
 );
 
@@ -237,7 +244,7 @@ create table THEODOIHOPDONG
    THOIGIANKETTHUCCHUKI date                           null,
    DOANHSOCUATHANG      numeric(8,2)                   null,
    PHIHOAHONGCUATHANG   numeric(8,2)                   null,
-   TINHTRANGNOPPHI      smallint                       null
+   TINHTRANGNOPPHI      BIT                            NULL,
 );
 
 alter table CHINHANH
