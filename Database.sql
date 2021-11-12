@@ -108,9 +108,9 @@ drop table if exists THEODOIHOPDONG;
 /*==============================================================*/
 create table CHINHANH 
 (
-   MACHINHANH           char(10)                       not null,
-   MADOITAC             char(10)                       not null,
-   MAHOPDONG            char(10)                       not null,
+   MACHINHANH           int IDENTITY(1,1)			   not null,
+   MADOITAC             int                            null,
+   MAHOPDONG            int                            null,
    DIACHICHINHANH       varchar(255)                   not null,
    constraint PK_CHINHANH primary key (MACHINHANH)
 );
@@ -120,8 +120,8 @@ create table CHINHANH
 /*==============================================================*/
 create table CHINHANH_SANPHAM 
 (
-   MACHINHANH           char(10)                       not null,
-   MASANPHAM            char(10)                       not null,
+   MACHINHANH           int                           not null,
+   MASANPHAM            int                           not null,
    SOLUONGTON           numeric                        null,
    constraint PK_CHINHANH_SANPHAM primary key clustered (MACHINHANH, MASANPHAM)
 );
@@ -131,8 +131,8 @@ create table CHINHANH_SANPHAM
 /*==============================================================*/
 create table CHITIETDONHANG_SANPHAM 
 (
-   MASANPHAM            char(10)                       not null,
-   MADONHANG            char(10)                       not null,
+   MASANPHAM            int                            not null,
+   MADONHANG            int                            not null,
    SOLUONGTUONGUNG      numeric                        not null,
    PHISANPHAM           numeric(8,2)                   not null,
    constraint PK_CHITIETDONHANG_SANPHAM primary key (MASANPHAM, MADONHANG)
@@ -143,7 +143,7 @@ create table CHITIETDONHANG_SANPHAM
 /*==============================================================*/
 create table DOITAC 
 (
-   MADOITAC             char(10)                       not null,
+   MADOITAC             int IDENTITY(1,1)			   not null,
    TENDOITAC            varchar(255)                   null,
    NGUOIDAIDIEN         varchar(255)                   null,
    SOCHINHANH           numeric                        null,
@@ -162,9 +162,9 @@ create table DOITAC
 /*==============================================================*/
 create table DONHANG 
 (
-   MADONHANG            char(10)                       not null,
-   MAKHACHHANG          char(10)                       not null,
-   TAI_MAKHACHHANG      char(10)                       null,
+   MADONHANG            bigint IDENTITY(1,1)		   not null,
+   MAKHACHHANG          int                            not null,
+   TAI_MAKHACHHANG      int                            null,
    DIACHIGIAODEN        varchar(255)                   null,
    HINHTHUCTHANHTOAN    varchar(255)                   null,
    TINHTRANGDONHANG     varchar(255)                   null,
@@ -178,9 +178,9 @@ create table DONHANG
 /*==============================================================*/
 create table HOPDONG 
 (
-   MAHOPDONG            char(10)                       not null,
-   MADOITAC             char(10)                       not null,
-   MASOTHUE             char(10)                       null,
+   MAHOPDONG            int IDENTITY(1,1)			   not null,
+   MADOITAC             int                           not null,
+   MASOTHUE             varchar(10)                       null,
    NGUOIDAIDIEN         varchar(255)                   null,
    SOCHINHANHDANGKI     numeric                        null,
    PHANTRAMHOAHONG      float                          null,
@@ -194,7 +194,7 @@ create table HOPDONG
 /*==============================================================*/
 create table KHACHHANG 
 (
-   MAKHACHHANG          char(10)                       not null,
+   MAKHACHHANG          int IDENTITY(1,1)			   not null,
    HOTEN                varchar(255)                   null,
    SODIENTHOAI          varchar(20)                    null,
    DIACHI               varchar(255)                   null,
@@ -207,7 +207,7 @@ create table KHACHHANG
 /*==============================================================*/
 create table SANPHAM 
 (
-   MASANPHAM            char(10)                       not null,
+   MASANPHAM            int IDENTITY(1,1)			   not null,
    TENSANPHAM           varchar(255)                   null,
    GIASANPHAM           numeric(8,2)                   null,
    constraint PK_SANPHAM primary key (MASANPHAM)
@@ -218,18 +218,18 @@ create table SANPHAM
 /*==============================================================*/
 create table TAIXE 
 (
-   MAKHACHHANG          char(10)                       not null,
+   MAKHACHHANG          int IDENTITY(1,1)			   not null,
    HOTEN                varchar(255)                   null,
    SODIENTHOAI          varchar(20)                    null,
    DIACHI               varchar(255)                   null,
    EMAIL                varchar(255)                   null,
-   CMND                 char(10)                       null,
-   BIENSOXE             char(10)                       null,
+   CMND                 varchar(10)                    null,
+   BIENSOXE             varchar(10)                    null,
    KHUVUCHOATDONG       varchar(255)                   null,
    SOTAIKHOANNGANHANG   varchar(20)                    null,
    CHINHANHNGANHANG     varchar(255)                   null,
    PHITHUECHAN          numeric(8,2)                   null,
-   TINHTRANGDONGPHITHUECHAN varchar(255)                   null,
+   TINHTRANGDONGPHITHUECHAN varchar(255)               null,
    THUNHAP              numeric(8,2)                   null,
    constraint PK_TAIXE primary key clustered (MAKHACHHANG)
 );
@@ -239,7 +239,7 @@ create table TAIXE
 /*==============================================================*/
 create table THEODOIHOPDONG 
 (
-   MAHOPDONG            char(10)                       not null,
+   MAHOPDONG            int                            not null,
    THOIGIANBATDAUCHUKI  date                           null,
    THOIGIANKETTHUCCHUKI date                           null,
    DOANHSOCUATHANG      numeric(8,2)                   null,

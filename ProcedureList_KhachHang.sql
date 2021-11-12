@@ -38,7 +38,7 @@ GO
 --- Input: Mã đối tác
 --- Output: Danh sách mã, tên, giá sản phẩm của các chi nhánh của đối tác
 -- =============================================
-CREATE OR ALTER PROCEDURE View_DoiTac_SanPham (@MaDoiTac char(10))
+CREATE OR ALTER PROCEDURE View_DoiTac_SanPham (@MaDoiTac int)
 
 AS
 BEGIN
@@ -59,7 +59,7 @@ GO
 --- Output: Thông tin của đơn và danh sách sản phẩm của đơn hàng
 -- =============================================
 CREATE OR ALTER PROCEDURE View_DonHang 
-	@MaDonHang char(10)
+	@MaDonHang bigint
 
 AS
 BEGIN
@@ -89,7 +89,7 @@ GO
 --- Output: Mã đơn hàng vừa thêm
 -- =============================================
 CREATE OR ALTER PROCEDURE Insert_DonHang
-	@MaKhachHang char(10), 
+	@MaKhachHang int,
 	@DiaChiGiaoDen varchar(255), 
 	@HinhThucThanhToan numeric(8, 2)
 
@@ -104,16 +104,16 @@ BEGIN
 			RETURN 
 		END
 
-		-- Tạo mã đơn hàng mới
-		DECLARE @MaDonHang char(10) 
-		SET @MaDonHang = 'DH21012001'
+		-- Tạo mã đơn hàng mới (auto increase)
+		DECLARE @MaDonHang int
 
 		-- Thêm thông tin vào bảng 
-		INSERT INTO DONHANG ( MADONHANG, MAKHACHHANG, DIACHIGIAODEN, HINHTHUCTHANHTOAN, TINHTRANGDONHANG, TONGPHISANPHAM ) 
-		VALUES ( @MaDonHang, @MaKhachHang, @DiaChiGiaoDen, @HinhThucThanhToan, N'Chưa đồng ý', 0 )
+		INSERT INTO DONHANG ( MADONHANG, MAKHACHHANG, DIACHIGIAODEN, HINHTHUCTHANHTOAN, TINHTRANGDONHANG, TONGPHISANPHAM )
+		VALUES (@MaKhachHang, @DiaChiGiaoDen, @HinhThucThanhToan, N'Chưa đồng ý', 0 )
 
+		SELECT @MaDonHang = SCOPE_IDENTITY()
 		-- Trả về mã đơn hàng
-		-- RETURN @MaDonHang
+		-- RETURN @MaDonHang 
 	COMMIT TRAN
 END
 
@@ -125,9 +125,9 @@ GO
 --- Output: 
 -- =============================================
 CREATE OR ALTER PROCEDURE Insert_ChiTietDonHang
-	@MaDonHang char(10), 
-	@MaSanPham char(10), 
-	@MaChiNhanh char(10),
+	@MaDonHang bigint, 
+	@MaSanPham int, 
+	@MaChiNhanh int,
 	@SoLuong numeric
 
 AS

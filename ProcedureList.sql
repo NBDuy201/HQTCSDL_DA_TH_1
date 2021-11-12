@@ -13,7 +13,7 @@ RETURN
 );
 GO
 
-CREATE OR ALTER PROCEDURE Approve_Contract @MaHDong varchar(10)
+CREATE OR ALTER PROCEDURE Approve_Contract @MaHDong int
 AS
 BEGIN
 	BEGIN TRAN
@@ -53,7 +53,7 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE Extend_Contract 
-	@MaHDong varchar(10),
+	@MaHDong int,
 	@PHANTRAMHOAHONG FLOAT,
 	@TgHieuLuc int
 AS
@@ -96,7 +96,7 @@ END
 GO
 
 CREATE OR ALTER PROCEDURE Approve_MonthlyFee 
-	@MaHDong varchar(10),
+	@MaHDong int,
 	@NgayBatDau date
 AS
 BEGIN
