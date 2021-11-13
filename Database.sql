@@ -132,7 +132,7 @@ create table CHINHANH_SANPHAM
 create table CHITIETDONHANG_SANPHAM 
 (
    MASANPHAM            int                            not null,
-   MADONHANG            int                            not null,
+   MADONHANG            bigint                        not null,
    SOLUONGTUONGUNG      numeric                        not null,
    PHISANPHAM           numeric(8,2)                   not null,
    constraint PK_CHITIETDONHANG_SANPHAM primary key (MASANPHAM, MADONHANG)
@@ -218,7 +218,7 @@ create table SANPHAM
 /*==============================================================*/
 create table TAIXE 
 (
-   MAKHACHHANG          int IDENTITY(1,1)			   not null,
+   MATAIXE	            int IDENTITY(1,1)			   not null,
    HOTEN                varchar(255)                   null,
    SODIENTHOAI          varchar(20)                    null,
    DIACHI               varchar(255)                   null,
@@ -231,7 +231,7 @@ create table TAIXE
    PHITHUECHAN          numeric(8,2)                   null,
    TINHTRANGDONGPHITHUECHAN varchar(255)               null,
    THUNHAP              numeric(8,2)                   null,
-   constraint PK_TAIXE primary key clustered (MAKHACHHANG)
+   constraint PK_TAIXE primary key clustered (MATAIXE)
 );
 
 /*==============================================================*/
@@ -284,16 +284,12 @@ alter table DONHANG
 
 alter table DONHANG
    add constraint FK_DONHANG_TAIXE_DON_TAIXE foreign key (TAI_MAKHACHHANG)
-      references TAIXE (MAKHACHHANG)
+      references TAIXE (MATAIXE)
       on update cascade
 
 alter table HOPDONG
    add constraint FK_HOPDONG_DOITAC_HO_DOITAC foreign key (MADOITAC)
       references DOITAC (MADOITAC)
-
-alter table TAIXE
-   add constraint FK_TAIXE_KHACHHANG_KHACHHAN foreign key (MAKHACHHANG)
-      references KHACHHANG (MAKHACHHANG)
 
 alter table THEODOIHOPDONG
    add constraint FK_THEODOIH_HOPDONG_T_HOPDONG foreign key (MAHOPDONG)
