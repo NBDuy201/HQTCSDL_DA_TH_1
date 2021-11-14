@@ -164,7 +164,7 @@ create table DONHANG
 (
    MADONHANG            bigint IDENTITY(1,1)		   not null,
    MAKHACHHANG          int                            not null,
-   TAI_MAKHACHHANG      int                            null,
+   MATAIXE              int                            null,
    DIACHIGIAODEN        varchar(255)                   null,
    HINHTHUCTHANHTOAN    varchar(255)                   null,
    TINHTRANGDONHANG     varchar(255)                   null,
@@ -283,7 +283,7 @@ alter table DONHANG
       on update cascade
 
 alter table DONHANG
-   add constraint FK_DONHANG_TAIXE_DON_TAIXE foreign key (TAI_MAKHACHHANG)
+   add constraint FK_DONHANG_TAIXE_DON_TAIXE foreign key (MATAIXE)
       references TAIXE (MATAIXE)
       on update cascade
 
