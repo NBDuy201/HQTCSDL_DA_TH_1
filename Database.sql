@@ -5,7 +5,10 @@
 USE [master]
 GO
 
-alter DATABASE [QLDatChuyenHangOnl] set single_user with rollback IMMEDIATE
+IF DB_ID('QLDatChuyenHangOnl') IS NOT NULL
+BEGIN
+	alter DATABASE [QLDatChuyenHangOnl] set single_user with rollback IMMEDIATE
+END
 GO
 
 DROP DATABASE IF EXISTS [QLDatChuyenHangOnl]
@@ -144,14 +147,14 @@ create table CHITIETDONHANG_SANPHAM
 create table DOITAC 
 (
    MADOITAC             int IDENTITY(1,1)			   not null,
-   TENDOITAC            varchar(255)                   null,
-   NGUOIDAIDIEN         varchar(255)                   null,
+   TENDOITAC            nvarchar(255)                  null,
+   NGUOIDAIDIEN         nvarchar(255)                   null,
    SOCHINHANH           numeric                        null,
-   DIACHIKINHDOANH      varchar(255)                   null,
-   THANHPHO             varchar(255)                   null,
-   QUAN                 varchar(255)                   null,
+   DIACHIKINHDOANH      nvarchar(255)                   null,
+   THANHPHO             nvarchar(255)                   null,
+   QUAN                 nvarchar(255)                   null,
    SOLUONGDONHANGMOINGAY numeric                        null,
-   LOAIHANGVANCHUYEN    varchar(255)                   null,
+   LOAIHANGVANCHUYEN    nvarchar(255)                   null,
    SODIENTHOAI          varchar(20)                    null,
    EMAIL                varchar(255)                   null,
    constraint PK_DOITAC primary key (MADOITAC)
@@ -165,11 +168,13 @@ create table DONHANG
    MADONHANG            bigint IDENTITY(1,1)		   not null,
    MAKHACHHANG          int                            not null,
    MATAIXE              int                            null,
-   DIACHIGIAODEN        varchar(255)                   null,
-   HINHTHUCTHANHTOAN    varchar(255)                   null,
-   TINHTRANGDONHANG     varchar(255)                   null,
+   DIACHIGIAODEN        nvarchar(255)                   null,
+   HINHTHUCTHANHTOAN    nvarchar(255)                   null,
+   TINHTRANGDONHANG     nvarchar(255)                   null,
    PHIVANCHUYEN         numeric(8,2)                   null,
-   TONGPHISANPHAM       numeric(8,2)                   null,
+   TONGPHISANPHAM       numeric(8,2)                   NULL,
+   NGAYLAP				date						   NULL,
+   MACHINHANH			INT							   null
    constraint PK_DONHANG primary key (MADONHANG)
 );
 
@@ -181,7 +186,7 @@ create table HOPDONG
    MAHOPDONG            int IDENTITY(1,1)			   not null,
    MADOITAC             int                           not null,
    MASOTHUE             varchar(10)                       null,
-   NGUOIDAIDIEN         varchar(255)                   null,
+   NGUOIDAIDIEN         nvarchar(255)                   null,
    SOCHINHANHDANGKI     numeric                        null,
    PHANTRAMHOAHONG      float                          null,
    THOIGIANHIEULUC      int                            null,
@@ -195,9 +200,9 @@ create table HOPDONG
 create table KHACHHANG 
 (
    MAKHACHHANG          int IDENTITY(1,1)			   not null,
-   HOTEN                varchar(255)                   null,
-   SODIENTHOAI          varchar(20)                    null,
-   DIACHI               varchar(255)                   null,
+   HOTEN                nvarchar(255)                   null,
+   SODIENTHOAI          nvarchar(20)                    null,
+   DIACHI               nvarchar(255)                   null,
    EMAIL                varchar(255)                   null,
    constraint PK_KHACHHANG primary key (MAKHACHHANG)
 );
@@ -208,7 +213,7 @@ create table KHACHHANG
 create table SANPHAM 
 (
    MASANPHAM            int IDENTITY(1,1)			   not null,
-   TENSANPHAM           varchar(255)                   null,
+   TENSANPHAM           nvarchar(255)                   null,
    GIASANPHAM           numeric(8,2)                   null,
    constraint PK_SANPHAM primary key (MASANPHAM)
 );
@@ -219,17 +224,17 @@ create table SANPHAM
 create table TAIXE 
 (
    MATAIXE	            int IDENTITY(1,1)			   not null,
-   HOTEN                varchar(255)                   null,
+   HOTEN                nvarchar(255)                   null,
    SODIENTHOAI          varchar(20)                    null,
-   DIACHI               varchar(255)                   null,
+   DIACHI               nvarchar(255)                   null,
    EMAIL                varchar(255)                   null,
    CMND                 varchar(10)                    null,
    BIENSOXE             varchar(10)                    null,
-   KHUVUCHOATDONG       varchar(255)                   null,
+   KHUVUCHOATDONG       nvarchar(255)                   null,
    SOTAIKHOANNGANHANG   varchar(20)                    null,
    CHINHANHNGANHANG     varchar(255)                   null,
    PHITHUECHAN          numeric(8,2)                   null,
-   TINHTRANGDONGPHITHUECHAN varchar(255)               null,
+   TINHTRANGDONGPHITHUECHAN bit						   null,
    THUNHAP              numeric(8,2)                   null,
    constraint PK_TAIXE primary key clustered (MATAIXE)
 );
@@ -250,42 +255,56 @@ create table THEODOIHOPDONG
 alter table CHINHANH
    add constraint FK_CHINHANH_DOITAC_CH_DOITAC foreign key (MADOITAC)
       references DOITAC (MADOITAC)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table CHINHANH
    add constraint FK_CHINHANH_HOPDONG_C_HOPDONG foreign key (MAHOPDONG)
       references HOPDONG (MAHOPDONG)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table CHINHANH_SANPHAM
    add constraint FK_CHINHANH_CHINHANH__CHINHANH foreign key (MACHINHANH)
       references CHINHANH (MACHINHANH)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table CHINHANH_SANPHAM
    add constraint FK_CHINHANH_CHINHANH__SANPHAM foreign key (MASANPHAM)
       references SANPHAM (MASANPHAM)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table CHITIETDONHANG_SANPHAM
    add constraint FK_CHITIETD_CHITIETDO_SANPHAM foreign key (MASANPHAM)
       references SANPHAM (MASANPHAM)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table CHITIETDONHANG_SANPHAM
    add constraint FK_CHITIETD_CHITIETDO_DONHANG foreign key (MADONHANG)
       references DONHANG (MADONHANG)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table DONHANG
    add constraint FK_DONHANG_KHACHHANG_KHACHHAN foreign key (MAKHACHHANG)
       references KHACHHANG (MAKHACHHANG)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table DONHANG
    add constraint FK_DONHANG_TAIXE_DON_TAIXE foreign key (MATAIXE)
       references TAIXE (MATAIXE)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
+
+alter table DONHANG
+   add constraint FK_DONHANG__CHINHANH_MACHINHANH foreign key (MACHINHANH)
+      references CHINHANH (MACHINHANH)
+      on update CASCADE
+	  ON DELETE CASCADE
 
 alter table HOPDONG
    add constraint FK_HOPDONG_DOITAC_HO_DOITAC foreign key (MADOITAC)
@@ -294,4 +313,5 @@ alter table HOPDONG
 alter table THEODOIHOPDONG
    add constraint FK_THEODOIH_HOPDONG_T_HOPDONG foreign key (MAHOPDONG)
       references HOPDONG (MAHOPDONG)
-      on update cascade
+      on update CASCADE
+	  ON DELETE CASCADE
