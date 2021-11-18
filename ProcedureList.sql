@@ -173,15 +173,22 @@ GO
 --- Input:
 --- Output: Các hợp đồng của mình
 -- =============================================
-CREATE OR ALTER FUNCTION SelectContract(@MaDTac int)
-RETURNS TABLE
+CREATE OR ALTER PROCEDURE SelectContract(@MaDTac int)
 AS
-RETURN
-(
-   SELECT *
+BEGIN TRAN
+	-- Mã đối tác để trống hoặc không tồn tại
+	IF (@MaDTac IS NULL OR NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac))
+	BEGIN
+		RAISERROR (N'Thông tin nhập không hợp lệ hoặc bị để trống.', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
+
+	-- Xem hợp đồng của đối tác
+	SELECT *
 	FROM HOPDONG h
 	WHERE h.MADOITAC = @MaDTac
-);
+COMMIT TRAN
 GO
 
 -- =============================================

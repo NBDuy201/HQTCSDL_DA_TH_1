@@ -1,0 +1,36 @@
+﻿USE [QLDatChuyenHangOnl]
+GO
+
+-- Tài xế chọn đơn hàng
+CREATE OR ALTER PROC [dbo].[ChonDonHang]( @MaTaiXe int, @MaDonHang bigint )
+AS
+BEGIN
+	BEGIN TRAN
+		IF @MaTaiXe IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE )
+		BEGIN
+			RAISERROR (N'Mã tài xế không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		-- Lỗi ở đây
+		IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG ) OR
+		   N'Đồng ý' <> ( SELECT TINHTRANGDONHANG FROM DONHANG WHERE MADONHANG=@MaDonHang )
+		BEGIN
+			RAISERROR (N'Mã đơn hàng không hợp lệ hoặc đã có người giao.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		BEGIN TRY
+			UPDATE DONHANG
+			SET MATAIXE=@MaTaiXe, TINHTRANGDONHANG=N'Đang giao'
+			WHERE MADONHANG=@MaDonHang
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RETURN
+		END CATCH
+	COMMIT TRAN
+END
+GO
