@@ -2,8 +2,8 @@
 GO
 
 -- Tài xế xem đơn hàng (Chỉ thấy được những đơn hàng đã 'Đồng ý')
--- Lỗi ở đây
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+-- Sửa lỗi bằng cách đổi READ UNCOMMITTED ->  READ COMMITTED
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 GO
 
 DECLARE @MaTaiXe INT = 1
@@ -29,4 +29,4 @@ BEGIN TRAN
 	WHERE dh.TINHTRANGDONHANG = N'Đồng ý' AND dh.DIACHIGIAODEN LIKE '%' + @KhuVuc
 COMMIT TRAN
 GO
--- Tài xế vẫn thấy Mã đơn hàng 5 dù tình trạng đơn hàng = 'Chưa đồng ý'
+-- Tài xế vẫn không còn thấy Mã đơn hàng 5 nữa vì tình trạng đơn hàng = 'Chưa đồng ý'

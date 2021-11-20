@@ -38,7 +38,7 @@ GRANT SELECT,UPDATE(THOIGIANHIEULUC, TINHTRANGPHIKICHHOAT) ON [dbo].[HOPDONG] TO
 GRANT EXEC ON Approve_Contract TO [StaffROLE]
 GRANT EXEC ON Extend_Contract TO [StaffROLE]
 GRANT EXEC ON Approve_MonthlyFee TO [StaffROLE]
-GRANT SELECT ON SelectPendingContract TO [StaffROLE]
+GRANT EXEC ON View_PendingContract TO [StaffROLE]
 GO
 
 --[Phân hệ đối tác(MADOITAC)]---------------------------------------------------
@@ -51,7 +51,7 @@ GRANT SELECT,UPDATE(TINHTRANGDONHANG) ON [dbo].[DONHANG] TO [PartnerROLE]
 GRANT SELECT,INSERT,DELETE,UPDATE ON [dbo].[CHINHANH_SANPHAM] TO [PartnerROLE]
 GRANT SELECT,INSERT ON [dbo].[HOPDONG] TO [PartnerROLE]
 GRANT SELECT ON [dbo].[THEODOIHOPDONG] TO [PartnerROLE]
-GRANT EXEC ON SelectContract TO [PartnerROLE]
+GRANT EXEC ON View_Contract TO [PartnerROLE]
 GRANT EXEC ON insertContract TO [PartnerROLE]
 GRANT EXEC ON updateTinhTrangDonHang TO [PartnerROLE]
 GRANT EXEC ON updateDiaChi TO [PartnerROLE]
