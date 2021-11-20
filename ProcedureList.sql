@@ -629,7 +629,7 @@ GO
 --- Output: Cập nhật tình trạng đơn hàng = đồng ý
 -- =============================================
 CREATE OR ALTER PROCEDURE DongY_DonHang
-	@MaDonHang int 
+	@MaDonHang bigint 
 
 AS
 BEGIN
