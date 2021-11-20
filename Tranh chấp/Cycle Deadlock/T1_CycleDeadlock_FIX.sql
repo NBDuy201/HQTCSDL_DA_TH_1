@@ -4,17 +4,15 @@ USE [QLDatChuyenHangOnl]
 GO
 
 -- =============================================
--- DongY_DonHang_FIX là procedure giống hệt DongY_DonHang 
+-- T1_FIX: giống hệt DongY_DonHang 
 -- Thứ tự cập nhật của bảng HOADON và CHINHANH_SANPHAM cũng được giữ nguyên
 -- Cụ thể: 1.DONHANG --> 2.CHINHANH_SANPHAM
 -- =============================================
 
-CREATE OR ALTER PROCEDURE DongY_DonHang_FIX
-	@MaDonHang bigint
+DECLARE
+	@MaDonHang bigint = 3
 
-AS
-BEGIN
-	BEGIN TRAN
+BEGIN TRAN
 	-- Đơn hàng không ở tình trạng chưa đồng ý
 	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
 		BEGIN
@@ -60,7 +58,4 @@ BEGIN
 		RETURN
 	END
 
-	COMMIT TRAN
-END
-
-GO
+COMMIT TRAN

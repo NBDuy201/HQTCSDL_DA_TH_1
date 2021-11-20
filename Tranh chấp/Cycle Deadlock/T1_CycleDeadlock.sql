@@ -4,16 +4,15 @@ USE [QLDatChuyenHangOnl]
 GO
 
 -- =============================================
--- DongY_DonHang_LOI là procedure giống DongY_DonHang 
--- nhưng thay đổi thứ tự cập nhật của bảng HOADON và CHINHANH_SANPHAM
--- Cụ thể: 1.CHINHANH_SANPHAM --> 2.DONHANG
+-- T1_FIX: giống hệt DongY_DonHang 
+-- Thứ tự cập nhật của bảng HOADON và CHINHANH_SANPHAM cũng được giữ nguyên
+-- Cụ thể: 1.DONHANG --> 2.CHINHANH_SANPHAM
 -- =============================================
-CREATE OR ALTER PROCEDURE DongY_DonHang_LOI
-	@MaDonHang bigint
 
-AS
-BEGIN
-	BEGIN TRAN
+DECLARE
+	@MaDonHang bigint = 3
+
+BEGIN TRAN
 	-- Đơn hàng không ở tình trạng chưa đồng ý
 	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
 		BEGIN
@@ -32,7 +31,15 @@ BEGIN
 			RETURN
 		END
 
+	-- Cập nhật tình trạng đơn hàng
+	UPDATE DONHANG 
+	SET TINHTRANGDONHANG = N'Đồng ý'
+	WHERE MADONHANG = @MaDonHang
+
 	-- Cập nhật lại số lượng tồn các sản phẩm của chi nhánh
+
+	WAITFOR DELAY '00:00:10'
+
 	UPDATE CHINHANH_SANPHAM
 	SET SOLUONGTON = SOLUONGTON - DH_SP.SOLUONGTUONGUNG
 
@@ -51,19 +58,4 @@ BEGIN
 		RETURN
 	END
 
-	WAITFOR DELAY '00:00:10'
-
-	-- Cập nhật tình trạng đơn hàng
-	UPDATE DONHANG 
-	SET TINHTRANGDONHANG = N'Đồng ý'
-	WHERE MADONHANG = @MaDonHang
-
-	COMMIT TRAN
-	RETURN
-END
-
-exec DongY_DonHang_LOI @MaDonHang = 3
-select * from CHITIETDONHANG_SANPHAM
-delete CHITIETDONHANG_SANPHAM where MASANPHAM = 5
-exec Insert_ChiTietDonHang @madonhang = 3, @masanpham = 4, @machinhanh = 2, @soluong = 1
-exec Insert_DonHang @makhachHang = 1, @diachigiaoden = 'HCMUS 227 NVC', @hinhthucthanhtoan = null
+COMMIT TRAN
