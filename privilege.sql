@@ -27,6 +27,11 @@ GO
 GRANT SELECT,INSERT,DELETE,UPDATE ON [dbo].[DOITAC] TO [AdminROLE]
 GRANT SELECT,INSERT,DELETE,UPDATE ON [dbo].[TAIXE] TO [AdminROLE]
 GRANT SELECT,INSERT,DELETE,UPDATE ON [dbo].[KHACHHANG] TO [AdminROLE]
+GRANT EXEC ON [dbo].[newlogin_DoiTac] TO [AdminROLE]
+GRANT EXEC ON [dbo].[newlogin_KhachHang] TO [AdminROLE]
+GRANT EXEC ON [dbo].[newlogin_TaiXe] TO [AdminROLE]
+GRANT EXEC ON [dbo].[grantAccount] TO [AdminROLE]
+GRANT EXEC ON [dbo].[denyAccount] TO [AdminROLE]
 GO
 
 --[Phân hệ nhân viên]---------------------------------------------------
@@ -79,7 +84,12 @@ GO
 GO
 GRANT SELECT,UPDATE ON [dbo].[TAIXE] TO [DriverROLE]	--self edit profile
 GRANT SELECT,UPDATE(MATAIXE, TINHTRANGDONHANG) ON [dbo].[DONHANG] TO [DriverROLE]
+GRANT EXEC ON [dbo].[XemDonHang] TO [DriverROLE]
+GRANT EXEC ON [dbo].[ChonDonHang] TO [DriverROLE]
+GRANT EXEC ON [dbo].[TraCuuDonHangDaGiao]TO [DriverROLE]
 GO
+
+
 
 
 

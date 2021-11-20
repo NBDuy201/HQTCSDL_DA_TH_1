@@ -201,7 +201,7 @@ create table KHACHHANG
 (
    MAKHACHHANG          int IDENTITY(1,1)			   not null,
    HOTEN                nvarchar(255)                   null,
-   SODIENTHOAI          nvarchar(20)                    null,
+   SODIENTHOAI          varchar(20)                    null,
    DIACHI               nvarchar(255)                   null,
    EMAIL                varchar(255)                   null,
    constraint PK_KHACHHANG primary key (MAKHACHHANG)

@@ -1,4 +1,6 @@
-﻿-- Nhân viên ===================================================
+﻿--==========================================================================================================================
+--==========================================================================================================================
+-- Nhân viên ===============================================================================================================
 USE [QLDatChuyenHangOnl]
 GO
 
@@ -205,8 +207,9 @@ BEGIN
 	COMMIT
 END
 GO
-
--- Đối tác ===================================================
+--========================================================================================================================
+--========================================================================================================================
+-- Đối tác ===============================================================================================================
 USE [QLDatChuyenHangOnl]
 GO
 
@@ -400,5 +403,563 @@ BEGIN
 		WHERE MACHINHANH = @MaCNhanh AND
 			MADOITAC = @MaDTac
 	COMMIT
+END
+GO
+--========================================================================================================================
+--========================================================================================================================
+-- Khách hàng ============================================================================================================
+--- Xem và cập nhật thông tin chính mình (password của LOGIN)
+--- Xem danh sách các đối tác
+--- Xem sản phẩm của 1 đối tác
+--- Thêm 1 đơn hàng
+--- Xem thông tin 1 đơn hàng
+-- ================================================
+USE [QLDatChuyenHangOnl]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+--- Xem danh sách các đối tác
+--- Input:
+--- Output: Danh sách mã và tên đối tác
+-- =============================================
+CREATE OR ALTER PROCEDURE View_DoiTac
+
+AS
+BEGIN
+	BEGIN TRAN
+		SELECT MADOITAC, TENDOITAC
+		FROM DOITAC
+	COMMIT TRAN
+END
+
+GO
+
+-- =============================================
+--- Xem sản phẩm của 1 đối tác
+--- Input: Mã đối tác
+--- Output: Danh sách mã, tên, giá sản phẩm của các chi nhánh của đối tác
+-- =============================================
+CREATE OR ALTER PROCEDURE View_DoiTac_SanPham (@MaDoiTac int)
+
+AS
+BEGIN
+	BEGIN TRAN
+		SELECT SP.MASANPHAM, SP.TENSANPHAM, SP.GIASANPHAM
+		FROM DOITAC DT, CHINHANH CN, CHINHANH_SANPHAM CN_SP, SANPHAM SP
+		WHERE DT.MADOITAC = CN.MADOITAC AND
+			  CN.MACHINHANH = CN_SP.MASANPHAM AND
+			  CN_SP.MASANPHAM = SP.MASANPHAM
+	COMMIT TRAN
+END
+
+GO
+
+-- =============================================
+--- Xem thông tin 1 đơn hàng:
+--- Input: Mã đơn hàng
+--- Output: Thông tin của đơn và danh sách sản phẩm của đơn hàng
+-- =============================================
+CREATE OR ALTER PROCEDURE View_DonHang 
+	@MaDonHang bigint
+AS
+BEGIN
+	BEGIN TRAN
+		-- Mã đơn hàng để trống hoặc không tồn tại
+		IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG )
+		BEGIN
+			RAISERROR (N'Mã đơn hàng không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		SELECT *
+		FROM DONHANG DH, CHITIETDONHANG_SANPHAM DH_SP, SANPHAM SP
+		WHERE DH.MADONHANG = @MaDonHang AND
+			  DH.MADONHANG = DH_SP.MADONHANG AND
+			  DH_SP.MASANPHAM = SP.MASANPHAM		  
+			  
+	COMMIT TRAN
+END
+
+GO
+
+-- =============================================
+--- Thêm 1 đơn hàng mới:
+--- Input: Mã khách hàng, địa chỉ giao đến, hình thứ thanh toán
+--- Output: Mã đơn hàng vừa thêm
+-- =============================================
+CREATE OR ALTER PROCEDURE Insert_DonHang
+	@MaKhachHang int,
+	@DiaChiGiaoDen varchar(255), 
+	@HinhThucThanhToan numeric(8, 2)
+
+AS
+BEGIN
+	BEGIN TRAN
+		-- Mã khách hàng để trống hoặc không tồn tại
+		IF @MaKhachHang IS NULL OR NOT EXISTS ( SELECT MAKHACHHANG FROM KHACHHANG )
+		BEGIN
+			RAISERROR (N'Mã khách hàng không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		-- Tạo mã đơn hàng mới (auto increase)
+		DECLARE @MaDonHang int
+
+		-- Thêm thông tin vào bảng 
+		INSERT INTO DONHANG ( MAKHACHHANG, DIACHIGIAODEN, HINHTHUCTHANHTOAN, TINHTRANGDONHANG, TONGPHISANPHAM )
+		VALUES (@MaKhachHang, @DiaChiGiaoDen, @HinhThucThanhToan, N'Chưa đồng ý', 0 )
+
+		SELECT @MaDonHang = SCOPE_IDENTITY()
+		-- Trả về mã đơn hàng
+		-- RETURN @MaDonHang 
+	COMMIT TRAN
+END
+
+GO
+
+-- =============================================
+--- Thêm 1 sản phẩm vào đơn hàng:
+--- Input: Mã Đơn hàng, Mã sản phẩm, Số lượng 
+--- Output: 
+-- =============================================
+CREATE OR ALTER PROCEDURE Insert_ChiTietDonHang
+	@MaDonHang bigint, 
+	@MaSanPham int, 
+	@MaChiNhanh int,
+	@SoLuong numeric
+
+AS
+BEGIN
+	BEGIN TRAN
+	-- Mã đơn hàng để trống hoặc không tồn tại
+	IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang)
+		BEGIN
+			RAISERROR (N'Mã đơn hàng không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Mã sản phẩm để trống hoặc không tồn tại
+	IF @MaSanPham IS NULL OR NOT EXISTS ( SELECT MASANPHAM FROM SANPHAM SP WHERE SP.MASANPHAM = @MaSanPham )
+		BEGIN
+			RAISERROR (N'Mã sản phẩm không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Mã chi nhánh để trống hoặc không tồn tại
+	IF @MaChiNhanh IS NULL OR NOT EXISTS ( SELECT MACHINHANH FROM CHINHANH CN WHERE CN.MACHINHANH = @MaChiNhanh)
+		BEGIN
+			RAISERROR (N'Mã chi nhánh không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Đơn hàng đã được khách hàng đồng ý trước đó
+	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
+		BEGIN
+			RAISERROR (N'Không thể thêm sản phẩm vào đơn hàng đã đi giao.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Số lượng thêm ít hơn số lượng tồn của chi nhánh đang chọn
+	IF @SoLuong > ( SELECT CN_SP.SOLUONGTON
+					FROM SANPHAM SP, CHINHANH_SANPHAM CN_SP 
+					WHERE CN_SP.MACHINHANH = @MaChiNhanh AND
+						  CN_SP.MASANPHAM = SP.MASANPHAM )
+		BEGIN
+			RAISERROR (N'Số lượng đang đặt vượt quá số lượng tồn của chi nhánh.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Tính phí sản phẩm tương ứng
+	DECLARE @PhiSanPham numeric(8, 2)
+	SET @PhiSanPham = @SoLuong * ( SELECT GIASANPHAM
+								   FROM SANPHAM
+								   WHERE MASANPHAM = @MaSanPham )
+
+	IF @PhiSanPham is null
+	BEGIN
+		RAISERROR (N'Phí sản phẩm không hợp lệ', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
+
+	--  Thêm thông tin vào bảng
+	BEGIN TRY
+		INSERT INTO CHITIETDONHANG_SANPHAM ( MADONHANG, MASANPHAM, SOLUONGTUONGUNG, PHISANPHAM )
+		VALUES ( @MaDonHang, @MaSanPham, @SoLuong, @PhiSanPham )
+	END TRY
+	BEGIN CATCH
+		RAISERROR (N'Đã xảy ra lỗi khi thêm sản phẩm vào đơn hàng', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END CATCH
+
+	-- Cập nhật lại số lượng tồn của chi nhánh
+	UPDATE CHINHANH_SANPHAM 
+	SET SOLUONGTON = SOLUONGTON - @SoLuong
+	WHERE MACHINHANH = @MaChiNhanh AND
+		  MASANPHAM = @MaSanPham
+	
+	COMMIT TRAN
+
+END
+
+GO
+
+-- =============================================
+--- Đồng ý đơn hàng:
+--- Input: Mã Đơn hàng ở trạng thái chưa đồng ý
+--- Output: Cập nhật tình trạng đơn hàng = đồng ý
+-- =============================================
+CREATE OR ALTER PROCEDURE DongY_DonHang
+	@MaDonHang char(10)
+
+AS
+BEGIN
+	BEGIN TRAN
+	-- Đơn hàng không ở tình trạng chưa đồng ý
+	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
+		BEGIN
+			RAISERROR (N'Đơn này đã được đồng ý rồi.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Đơn hàng chưa có sản phẩm nào
+	IF NOT EXISTS ( SELECT CT.MADONHANG
+					FROM DONHANG DH, CHITIETDONHANG_SANPHAM CT 
+					WHERE CT.MADONHANG = DH.MADONHANG )
+		BEGIN
+			RAISERROR (N'Đơn hàng chưa có sản phẩm nào.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+	-- Cập nhật tình trạng đơn hàng
+	UPDATE DONHANG 
+	SET TINHTRANGDONHANG = N'Đồng ý'
+	WHERE MADONHANG = @MaDonHang
+	
+	COMMIT TRAN
+END
+GO
+--========================================================================================================================
+--========================================================================================================================
+-- Tài xế ================================================================================================================
+USE [QLDatChuyenHangOnl]
+GO
+
+-- =============================================
+--- Xem danh sách đơn hàng có thể giao:
+--- Input: Mã tài xế
+--- Output: Thông tin của đơn hàng trong khu vực hoạt động và có tình trạng = 'Đồng ý'
+-- =============================================
+CREATE OR ALTER PROC [dbo].[XemDonHang](@MaTaiXe int)
+AS
+BEGIN
+	BEGIN TRAN
+		IF @MaTaiXe IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE )
+		BEGIN
+			RAISERROR (N'Mã tài xế không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		DECLARE @KhuVuc varchar(255)
+		SET @KhuVuc = ( SELECT KHUVUCHOATDONG FROM TAIXE WHERE MATAIXE=@MaTaiXe )
+		IF @KhuVuc IS NULL
+		BEGIN
+			RAISERROR (N'Tài xế chưa cập nhật khu vực hoạt động.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		SELECT kh.HOTEN, dh.DIACHIGIAODEN, dh.HINHTHUCTHANHTOAN, dh.PHIVANCHUYEN, dh.TONGPHISANPHAM
+		FROM DONHANG dh JOIN KHACHHANG kh ON dh.MAKHACHHANG = kh.MAKHACHHANG
+		WHERE dh.TINHTRANGDONHANG = N'Đồng ý' AND dh.DIACHIGIAODEN LIKE '%' + @KhuVuc
+	COMMIT TRAN
+END
+GO
+
+-- =============================================
+--- Xác nhận giao 1 đơn hàng
+--- Input: Mã tài xế, Mã đơn hàng
+--- Output: Cập nhật tình trạng đơn hàng = 'Đang giao'
+-- =============================================
+CREATE OR ALTER PROC [dbo].[ChonDonHang]( @MaTaiXe int, @MaDonHang bigint )
+AS
+BEGIN
+	BEGIN TRAN
+		IF @MaTaiXe IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE )
+		BEGIN
+			RAISERROR (N'Mã tài xế không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG WHERE TINHTRANGDONHANG = N'Đồng ý' )
+		BEGIN
+			RAISERROR (N'Mã đơn hàng không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		BEGIN TRY
+			UPDATE DONHANG
+			SET MATAIXE=@MaTaiXe, TINHTRANGDONHANG=N'Đang giao'
+			WHERE MADONHANG=@MaDonHang
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RETURN
+		END CATCH
+	COMMIT TRAN
+END
+GO
+
+-- =============================================
+--- Xem danh sách đơn hàng đã giao:
+--- Input: Mã tài xế
+--- Output: Thông tin của đơn hàng đã giao của Mã tài xế
+-- =============================================
+CREATE OR ALTER PROC [dbo].[TraCuuDonHangDaGiao] @MaTaiXe int
+AS
+BEGIN
+	BEGIN TRAN
+		IF @MaTaiXe IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE )
+		BEGIN
+			RAISERROR (N'Mã tài xế không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN 
+		END
+
+		SELECT MADONHANG, NGAYLAP, PHIVANCHUYEN
+		FROM DONHANG
+		WHERE MATAIXE=@MaTaiXe AND TINHTRANGDONHANG=N'Đã nhận'
+
+	COMMIT TRAN
+END
+GO
+--========================================================================================================================
+--========================================================================================================================
+-- Quản trị ==============================================================================================================
+USE [QLDatChuyenHangOnl]
+GO 
+
+-- =============================================
+--- Thêm đối tác mới
+--- Input: Thông tin đối tác
+--- Output: 
+---     + Thêm thông tin đối tác vào bảng DOITAC
+---		+ Tạo login, user; add ROLE 
+-- =============================================
+CREATE OR ALTER PROC [dbo].[newlogin_DoiTac]
+@TenDT nvarchar(255),
+@NguoiDaiDien nvarchar(255),
+@DiaChi nvarchar(255),
+@ThanhPho nvarchar(255),
+@Quan nvarchar(255),
+@SoChiNhanh numeric,
+@SoDH_moingay numeric,
+@LoaiHang nvarchar(255),
+@Sdt varchar(20),
+@Email varchar(255)
+AS
+BEGIN
+	BEGIN TRAN
+		-- Sđt đã được sử dụng
+		IF EXISTS (SELECT SODIENTHOAI FROM DOITAC WHERE SODIENTHOAI=@Sdt)
+		BEGIN
+			RAISERROR (N'Số điện thoại này đã được đăng ký.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		DECLARE @MaDT int
+
+		-- INSERT thông tin Đối tác
+		BEGIN TRY
+			INSERT DOITAC (TENDOITAC, NGUOIDAIDIEN, SOCHINHANH, DIACHIKINHDOANH, THANHPHO, QUAN, SOLUONGDONHANGMOINGAY, LOAIHANGVANCHUYEN, SODIENTHOAI, EMAIL )
+			VALUES (@TenDT, @NguoiDaiDien, @SoChiNhanh, @DiaChi, @ThanhPho, @Quan, @SoDH_moingay, @LoaiHang, @Sdt, @Email)
+			SELECT @MaDT = SCOPE_IDENTITY()
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RETURN
+		END CATCH
+
+		-- Tạo login (username = DTA + Sdt)
+		DECLARE @safe_username varchar(40)
+		DECLARE @safe_password varchar(40)
+		DECLARE @safe_db varchar(40)
+		SET @safe_username = REPLACE('DTA'+@Sdt,'''','''''')
+		SET @safe_password = REPLACE(@Sdt,'''','''''')
+		SET @safe_db = REPLACE('QLDatChuyenHangOnl','''','''''')
+
+		DECLARE @sql nvarchar(max)
+		SET @sql = 'USE ' + @safe_db + ';' +
+				   'CREATE LOGIN ' + @safe_username + ' WITH PASSWORD=''' + @safe_password + '''; ' +
+				   'CREATE USER ' + @safe_username + ' FOR LOGIN ' + @safe_username + '; ' +
+				   'ALTER ROLE [ParnerROLE] ADD MEMBER ' + @safe_username + ';'
+		EXEC (@sql)
+	COMMIT TRAN
+END
+GO
+
+-- =============================================
+--- Thêm khách hàng mới
+--- Input: Thông tin khách hàng
+--- Output: 
+---     + Thêm thông tin đối tác vào bảng KHACHHANG
+---		+ Tạo login, user; add ROLE 
+-- =============================================
+CREATE OR ALTER PROC [dbo].[newlogin_KhachHang]
+@TenKH nvarchar(255),
+@Sdt varchar(20),
+@DiaChi nvarchar(255),
+@Email varchar(255)
+AS
+BEGIN
+	BEGIN TRAN
+		-- Sđt đã được sử dụng
+		IF EXISTS (SELECT SODIENTHOAI FROM KHACHHANG WHERE SODIENTHOAI=@Sdt)
+		BEGIN
+			RAISERROR (N'Số điện thoại này đã được đăng ký.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		DECLARE @MaKH int
+
+		-- INSERT thông tin Đối tác
+		BEGIN TRY
+			INSERT KHACHHANG (HOTEN, SODIENTHOAI, DIACHI, EMAIL)
+			VALUES (@TenKH, @Sdt, @DiaChi, @Email)
+			SELECT @MaKH = SCOPE_IDENTITY()
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RETURN
+		END CATCH
+
+		-- Tạo login (username = KHG + Sdt)
+		DECLARE @safe_username varchar(40)
+		DECLARE @safe_password varchar(40)
+		DECLARE @safe_db varchar(40)
+		SET @safe_username = REPLACE('KHG'+@Sdt,'''','''''')
+		SET @safe_password = REPLACE(@Sdt,'''','''''')
+		SET @safe_db = REPLACE('QLDatChuyenHangOnl','''','''''')
+
+		DECLARE @sql nvarchar(max)
+		SET @sql = 'USE ' + @safe_db + ';' +
+				   'CREATE LOGIN ' + @safe_username + ' WITH PASSWORD=''' + @safe_password + '''; ' +
+				   'CREATE USER ' + @safe_username + ' FOR LOGIN ' + @safe_username + '; ' +
+				   'ALTER ROLE [CustomerROLE] ADD MEMBER ' + @safe_username + ';'
+		EXEC (@sql)
+	COMMIT TRAN
+END
+GO
+
+-- =============================================
+--- Thêm tài xế mới
+--- Input: Thông tin tài xế
+--- Output: 
+---     + Thêm thông tin đối tác vào bảng TAIXE
+---		+ Tạo login, user; add ROLE 
+-- =============================================
+CREATE OR ALTER PROC [dbo].[newlogin_TaiXe]
+@TenTX nvarchar(255),
+@Sdt varchar(20),
+@DiaChi nvarchar(255),
+@Email varchar(255),
+@CMND varchar(10),
+@BiensoXe varchar(10),
+@KhuVucHoatDong nvarchar(255),
+@SoTKNH varchar(20),
+@ChiNhanhTKNN varchar(255)
+AS
+BEGIN
+	BEGIN TRAN
+		-- Sđt đã được sử dụng
+		IF EXISTS (SELECT SODIENTHOAI FROM TAIXE WHERE SODIENTHOAI=@Sdt)
+		BEGIN
+			RAISERROR (N'Số điện thoại này đã được đăng ký.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		DECLARE @MaTX int
+
+		-- INSERT thông tin Đối tác
+		BEGIN TRY
+			INSERT TAIXE(HOTEN, SODIENTHOAI, DIACHI, EMAIL, CMND, BIENSOXE, KHUVUCHOATDONG, SOTAIKHOANNGANHANG, CHINHANHNGANHANG, TINHTRANGDONGPHITHUECHAN)
+			VALUES (@TenTX, @Sdt, @DiaChi, @Email, @CMND, @BiensoXe, @KhuVucHoatDong, @SoTKNH, @ChiNhanhTKNN, N'Chưa đóng')
+			SELECT @MaTX = SCOPE_IDENTITY()
+		END TRY
+		BEGIN CATCH
+			ROLLBACK TRAN
+			RETURN
+		END CATCH
+
+
+		-- Tạo login (username = KHG + Sdt)
+		DECLARE @safe_username varchar(40)
+		DECLARE @safe_password varchar(40)
+		DECLARE @safe_db varchar(40)
+		SET @safe_username = REPLACE('TXE'+@Sdt,'''','''''')
+		SET @safe_password = REPLACE(@Sdt,'''','''''')
+		SET @safe_db = REPLACE('QLDatChuyenHangOnl','''','''''')
+
+		DECLARE @sql nvarchar(max)
+		SET @sql = 'USE ' + @safe_db + ';' +
+				   'CREATE LOGIN ' + @safe_username + ' WITH PASSWORD=''' + @safe_password + '''; ' +
+				   'CREATE USER ' + @safe_username + ' FOR LOGIN ' + @safe_username + '; ' +
+				   'ALTER ROLE [DriverROLE] ADD MEMBER ' + @safe_username + ';'
+		EXEC (@sql)
+	COMMIT TRAN
+END
+GO
+
+-- =============================================
+--- Kích hoạt tài khoản đã bị khóa
+--- Input: username (tên đăng nhập của tài khoản)
+--- Output: GRANT CONNECT cho username
+-- =============================================
+CREATE OR ALTER PROC [dbo].[grantAccount] @username varchar(max)
+AS
+BEGIN
+BEGIN TRAN
+	DECLARE @sql nvarchar(max)
+	SET @sql = 'USE [QLDatChuyenHangOnl];' +
+			   'GRANT CONNECT TO ' + @username + ';'
+	EXEC(@sql)
+COMMIT
+END
+GO
+
+-- =============================================
+--- Khóa tài khoản
+--- Input: username (tên đăng nhập của tài khoản)
+--- Output: DENY CONNECT cho username
+-- =============================================
+CREATE OR ALTER PROC [dbo].[denyAccount] @username varchar(max)
+AS
+BEGIN
+BEGIN TRAN
+	DECLARE @sql nvarchar(max)
+	SET @sql = 'USE [QLDatChuyenHangOnl];' +
+			   'DENY CONNECT TO ' + @username + ';'
+	EXEC(@sql)
+COMMIT
 END
 GO
