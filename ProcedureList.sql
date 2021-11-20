@@ -495,7 +495,7 @@ GO
 CREATE OR ALTER PROCEDURE Insert_DonHang
 	@MaKhachHang int,
 	@DiaChiGiaoDen varchar(255), 
-	@HinhThucThanhToan numeric(8, 2)
+	@HinhThucThanhToan nvarchar(255)
 
 AS
 BEGIN
@@ -570,7 +570,7 @@ BEGIN
 		END
 
 	-- Số lượng thêm ít hơn số lượng tồn của chi nhánh đang chọn
-	IF @SoLuong > ( SELECT CN_SP.SOLUONGTON
+	IF @SoLuong > ( SELECT SUM(CN_SP.SOLUONGTON)
 					FROM SANPHAM SP, CHINHANH_SANPHAM CN_SP 
 					WHERE CN_SP.MACHINHANH = @MaChiNhanh AND
 						  CN_SP.MASANPHAM = SP.MASANPHAM )
@@ -593,25 +593,32 @@ BEGIN
 		RETURN
 	END
 
-	--  Thêm thông tin vào bảng
-	BEGIN TRY
-		INSERT INTO CHITIETDONHANG_SANPHAM ( MADONHANG, MASANPHAM, SOLUONGTUONGUNG, PHISANPHAM )
-		VALUES ( @MaDonHang, @MaSanPham, @SoLuong, @PhiSanPham )
-	END TRY
-	BEGIN CATCH
-		RAISERROR (N'Đã xảy ra lỗi khi thêm sản phẩm vào đơn hàng', -1, -1)
-		ROLLBACK TRAN
-		RETURN
-	END CATCH
-
-	-- Cập nhật lại số lượng tồn của chi nhánh
-	UPDATE CHINHANH_SANPHAM 
-	SET SOLUONGTON = SOLUONGTON - @SoLuong
-	WHERE MACHINHANH = @MaChiNhanh AND
-		  MASANPHAM = @MaSanPham
-	
-	COMMIT TRAN
-
+	-- Nếu sản phẩm đã có trong chi tiết đơn hàng thì chỉ cập nhật lại số lượng tương ứng
+	IF EXISTS ( SELECT * 
+				FROM CHITIETDONHANG_SANPHAM
+				WHERE MASANPHAM = @MaSanPham AND
+					  MADONHANG = @MaDonHang )
+	BEGIN
+		UPDATE CHITIETDONHANG_SANPHAM
+		SET SOLUONGTUONGUNG = @SoLuong
+		WHERE MASANPHAM = @MaSanPham AND
+				MADONHANG = @MaDonHang
+		COMMIT TRAN
+	END
+	ELSE
+	BEGIN
+		--  Thêm thông tin vào bảng
+		BEGIN TRY
+			INSERT INTO CHITIETDONHANG_SANPHAM ( MADONHANG, MASANPHAM, SOLUONGTUONGUNG, PHISANPHAM )
+			VALUES ( @MaDonHang, @MaSanPham, @SoLuong, @PhiSanPham )
+		END TRY
+		BEGIN CATCH
+			RAISERROR (N'Đã xảy ra lỗi khi thêm sản phẩm vào đơn hàng', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END CATCH
+		COMMIT TRAN
+	END
 END
 
 GO
@@ -622,7 +629,7 @@ GO
 --- Output: Cập nhật tình trạng đơn hàng = đồng ý
 -- =============================================
 CREATE OR ALTER PROCEDURE DongY_DonHang
-	@MaDonHang char(10)
+	@MaDonHang int 
 
 AS
 BEGIN
@@ -649,6 +656,25 @@ BEGIN
 	UPDATE DONHANG 
 	SET TINHTRANGDONHANG = N'Đồng ý'
 	WHERE MADONHANG = @MaDonHang
+	-- Cập nhật lại số lượng tồn các sản phẩm của chi nhánh
+
+	UPDATE CHINHANH_SANPHAM
+	SET SOLUONGTON = SOLUONGTON - DH_SP.SOLUONGTUONGUNG
+
+	FROM CHINHANH_SANPHAM CN_SP
+	INNER JOIN CHITIETDONHANG_SANPHAM DH_SP
+	ON CN_SP.MASANPHAM = DH_SP.MASANPHAM AND
+		DH_SP.MADONHANG = @MaDonHang
+
+	IF EXISTS ( SELECT SOLUONGTON
+				FROM CHINHANH_SANPHAM
+				WHERE SOLUONGTON < 0 )
+
+	BEGIN
+		RAISERROR (N'Số lượng đang đặt vượt quá số lượng tồn của chi nhánh.', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
 	
 	COMMIT TRAN
 END
