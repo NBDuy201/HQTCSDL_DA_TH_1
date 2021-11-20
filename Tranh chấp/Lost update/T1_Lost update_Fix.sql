@@ -1,9 +1,9 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
--- Tài xế 2 chọn đơn hàng có @MaDonHang = 1
+-- Tài xế 1 chọn đơn hàng có @MaDonHang = 1
 DECLARE 
-@MaTaiXe int = 2,
+@MaTaiXe int = 1,
 @MaDonHang INT = 1
 BEGIN TRAN
 	IF @MaTaiXe IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE )
@@ -13,8 +13,8 @@ BEGIN TRAN
 		RETURN 
 	END
 
-	IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG) OR
-		   N'Đồng ý' <> ( SELECT TINHTRANGDONHANG FROM DONHANG WHERE MADONHANG=@MaDonHang )
+	IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG  WITH(UPDLOCK) ) OR
+		   N'Đồng ý' <> ( SELECT TINHTRANGDONHANG FROM DONHANG  WITH(UPDLOCK) WHERE MADONHANG=@MaDonHang )
 	BEGIN
 		RAISERROR (N'Mã đơn hàng không hợp lệ hoặc đã có người giao.', -1, -1)
 		ROLLBACK TRAN

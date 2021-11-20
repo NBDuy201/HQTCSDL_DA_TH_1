@@ -7,18 +7,37 @@ GO
 --- Input:
 --- Output: Danh sách tất cả các hợp đồng đang chờ duyệt
 -- =============================================
-CREATE OR ALTER FUNCTION SelectPendingContract()
-RETURNS TABLE
+CREATE OR ALTER PROCEDURE View_PendingContract @MaDTac int
 AS
-RETURN
-(
-   SELECT *
-	FROM HOPDONG h
-	WHERE h.TINHTRANGPHIKICHHOAT != 1
-);
+BEGIN TRAN
+	-- Mã đối tác để trống hoặc không tồn tại
+	IF NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac) AND @MaDTac IS NOT NULL
+	BEGIN
+		RAISERROR (N'Thông tin nhập không hợp lệ hoặc bị để trống.', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
+
+	-- In ra tất cả các hợp đồng đang chờ duyệt của tất cả các đối tác
+	IF (@MaDTac IS NULL)
+	BEGIN
+		SELECT *
+		FROM HOPDONG h
+		WHERE h.TINHTRANGPHIKICHHOAT != 1
+	END
+	-- Xem hợp đồng của đối tác
+	ELSE
+	BEGIN
+		SELECT *
+		FROM HOPDONG h
+		WHERE 
+			h.TINHTRANGPHIKICHHOAT != 1 AND
+			h.MADOITAC = @MaDTac
+	END
+COMMIT TRAN
 GO
 
--- =============================================
+--- =============================================
 --- Duyệt hợp đồng
 --- Input: Mã hợp đồng
 --- Output: 
@@ -38,8 +57,20 @@ BEGIN
 			RETURN
 		END
 
-		-- Hợp đồng đã được duyệt
-		IF NOT EXISTS (SELECT * FROM SelectPendingContract() WHERE MAHOPDONG = @MaHDong)
+		Declare @T Table 
+		(
+			MAHOPDONG INT,
+			MADOITAC INT,
+			MASOTHUE NVARCHAR(10),
+			NGUOIDAIDIEN NVARCHAR(255),
+			SOCHINHANHDANGKI NUMERIC(18, 0),
+			PHANTRAMHOAHONG FLOAT,
+			THOIGIANHIEULUC INT,
+			TINHTRANGPHIKICHHOAT bit
+		)
+		Insert @T Exec View_PendingContract NULL 
+		-- Hợp đồng chưa được duyệt
+		IF NOT EXISTS (Select * from @T WHERE MAHOPDONG = @MaHDong)
 		BEGIN
 			RAISERROR (N'Hợp đồng đã được duyệt từ trước.', -1, -1)
 			ROLLBACK TRAN
@@ -70,7 +101,6 @@ BEGIN
 		BEGIN
 			INSERT INTO THEODOIHOPDONG (MAHOPDONG, THOIGIANBATDAUCHUKI, THOIGIANKETTHUCCHUKI, TINHTRANGNOPPHI)
 			VALUES (@MaHDong, @batdau, DATEADD(MONTH, 1, @batdau), 0)
-
 			SET @batdau = DATEADD(MONTH, 1, @batdau) -- Ngày bắt đầu + 1 tháng
 		END
 	COMMIT
@@ -99,8 +129,20 @@ BEGIN
 			RETURN
 		END
 
+		Declare @T Table 
+		(
+			MAHOPDONG INT,
+			MADOITAC INT,
+			MASOTHUE NVARCHAR(10),
+			NGUOIDAIDIEN NVARCHAR(255),
+			SOCHINHANHDANGKI NUMERIC(18, 0),
+			PHANTRAMHOAHONG FLOAT,
+			THOIGIANHIEULUC INT,
+			TINHTRANGPHIKICHHOAT bit
+		)
+		Insert @T Exec View_PendingContract NULL 
 		-- Hợp đồng chưa được duyệt
-		IF EXISTS (SELECT * FROM SelectPendingContract() WHERE MAHOPDONG = @MaHDong)
+		IF EXISTS (Select * from @T WHERE MAHOPDONG = @MaHDong)
 		BEGIN
 			RAISERROR (N'Mã hợp động chưa được duyệt.', -1, -1)
 			ROLLBACK TRAN
@@ -128,7 +170,7 @@ GO
 -- =============================================
 --- Cập nhật phí thanh toán theo tháng
 --- Input: Mã hợp đồng, ngày bắt của chu kì
---- Output: Cập nhật thời gian tình trạng đóng phí
+--- Output: Cập nhật tình trạng đóng phí của chu kì		
 -- =============================================
 CREATE OR ALTER PROCEDURE Approve_MonthlyFee 
 	@MaHDong int,
@@ -173,7 +215,7 @@ GO
 --- Input:
 --- Output: Các hợp đồng của mình
 -- =============================================
-CREATE OR ALTER PROCEDURE SelectContract(@MaDTac int)
+CREATE OR ALTER PROCEDURE View_Contract(@MaDTac int)
 AS
 BEGIN TRAN
 	-- Mã đối tác để trống hoặc không tồn tại
@@ -206,7 +248,7 @@ CREATE OR ALTER PROCEDURE insertContract
 AS
 BEGIN
 	BEGIN TRAN
-		-- Mã hợp đồng để trống hoặc không tồn tại
+		-- Mã đối tác để trống hoặc không tồn tại
 		IF (@MaDTac IS NULL OR NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac)) OR
 			(@MaSThue IS NULL) OR
 			(@NDDien IS NULL) OR 
@@ -219,16 +261,15 @@ BEGIN
 			RETURN
 		END
 
-		-- Số chi nhánh đăng kí < số chi nhánh của đối tác
+		-- Số chi nhánh đã đăng kí > số chi nhánh đối tác sỡ hữu
 		DECLARE 
 			@TongChiNhanh INT = (SELECT d.SOCHINHANH
-								FROM chinhanh c JOIN doitac d
-								ON c.MADOITAC  = d.MADOITAC
+								FROM doitac d
 								WHERE d.MADOITAC = @MaDTac),
 			@TongCNhanhDaDK INT = (SELECT SUM(SOCHINHANHDANGKI)
 									FROM HOPDONG
 									WHERE MADOITAC = @MaDTac)
-		IF @TongChiNhanh > @TongCNhanhDaDK + @SoCNhanh
+		IF @TongChiNhanh < @TongCNhanhDaDK + @SoCNhanh
 		BEGIN
         	RAISERROR (N'Số chi nhánh đăng kí vượt quá tổng số chi nhánh của bạn.', -1, -1)
 			ROLLBACK TRAN
@@ -243,7 +284,7 @@ END
 GO
 
 -- =============================================
---- Update tình trạng đơn hàng của chi nhánh mà đối tác sỡ hữu
+--- Tìm đơn hàng thuộc hợp đồng nào
 --- Input: Mã đơn hàng
 --- Output: Mã hợp đồng
 -- =============================================
@@ -281,8 +322,6 @@ BEGIN
 		END
 
 		-- Từ khóa của "tình trạng đơn hàng" ko hợp lệ
-		PRINT @TinhTrangDHang
-		--IF (@TinhTrangDHang IS NULL) OR (@TinhTrangDHang != N'Đang giao') OR (@TinhTrangDHang <> N'Đã nhận')
 		IF @TinhTrangDHang IS NULL OR @TinhTrangDHang NOT IN(N'Đã nhận', N'Đang giao')
 		BEGIN
 			RAISERROR (N'Từ khóa của "tình trạng đơn hàng" ko hợp lệ.', -1, -1)
