@@ -14,8 +14,8 @@ VALUES (13, @MaTXE, N'111, đường testing', N'Đã nhận', 24000)
 SELECT @MaDonHang = SCOPE_IDENTITY()
 
 -- =============================================
--- T2_FIX
--- T2: không đổi
+-- T1_FIX
+-- T1: không đổi
 -- =============================================
 BEGIN TRAN SET TRAN ISOLATION LEVEL READ UNCOMMITTED	
 	-- Mã đơn hàng để trống hoặc không tồn tại
