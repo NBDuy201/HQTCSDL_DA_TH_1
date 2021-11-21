@@ -15,9 +15,9 @@ SELECT @MaDonHang = SCOPE_IDENTITY()
 
 -- =============================================
 -- T2_FIX
--- T2: đã được tăng mức cô lập Serializable
+-- T2: không đổi
 -- =============================================
-BEGIN TRAN SET TRAN ISOLATION LEVEL SERIALIZABLE	
+BEGIN TRAN SET TRAN ISOLATION LEVEL READ UNCOMMITTED	
 	-- Mã đơn hàng để trống hoặc không tồn tại
 	IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG WHERE MADONHANG = @MaDonHang )
 	BEGIN

@@ -4,11 +4,11 @@ GO
 
 -- =============================================
 -- T2_FIX
--- T2: đã được tăng mức cô lập Repeatable read
+-- T2: không đổi
 -- =============================================
 DECLARE @MaTXE int = 3
 
-BEGIN TRAN SET TRAN ISOLATION LEVEL REPEATABLE READ
+BEGIN TRAN SET TRAN ISOLATION LEVEL READ UNCOMMITTED
 	-- Mã đơn hàng để trống hoặc không tồn tại
 	IF @MaTXE IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE WHERE MATAIXE = @MaTXE )
 	BEGIN
