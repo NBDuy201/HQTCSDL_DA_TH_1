@@ -312,7 +312,7 @@
     {
         "id": "da2ee8951428f5c3",
         "type": "ui_tab",
-        "name": "Taixe",
+        "name": "Chon Don Hang - Xem don hang trong khu vuc",
         "icon": "dashboard",
         "order": 1,
         "disabled": false,

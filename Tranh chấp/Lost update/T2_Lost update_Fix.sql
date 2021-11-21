@@ -1,6 +1,7 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
+-- T2_FIX: tương đương với proc ChonDonHang nhưng có thêm updlock để tránh đọc dữ liệu khi 1 trans chuẩn bị ghi
 -- Tài xế 2 chọn đơn hàng có @MaDonHang = 1
 DECLARE 
 @MaTaiXe int = 2,

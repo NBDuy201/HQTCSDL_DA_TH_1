@@ -1,6 +1,7 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
+-- T1: tương đương với proc ChonDonHang
 -- Tài xế 1 chọn đơn hàng có @MaDonHang = 1
 DECLARE 
 @MaTaiXe int = 1,

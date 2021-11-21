@@ -1,8 +1,8 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
--- Tài xế xem đơn hàng (Chỉ thấy được những đơn hàng đã 'Đồng ý')
--- Lỗi ở đây
+-- T2: tương đương với proc XemDonHang
+-- Lỗi ở đây: Tài xế xem đơn hàng chưa commit
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 GO
 

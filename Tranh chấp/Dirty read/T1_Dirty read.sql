@@ -1,12 +1,8 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
--- =============================================
---- Đồng ý đơn hàng:
---- Input: Mã Đơn hàng ở trạng thái chưa đồng ý
---- Output: Cập nhật tình trạng đơn hàng = đồng ý
--- =============================================
-DECLARE @MaDonHang int = 5
+-- T1: tương đương với proc DongY_DonHang
+DECLARE @MaDonHang bigint = 5
 BEGIN TRAN
 	-- Đơn hàng không ở tình trạng chưa đồng ý
 	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
@@ -35,7 +31,24 @@ BEGIN TRAN
 	WAITFOR DELAY '00:00:05';
 	ROLLBACK TRAN
 	RETURN
-	
+
+	UPDATE CHINHANH_SANPHAM
+	SET SOLUONGTON = SOLUONGTON - DH_SP.SOLUONGTUONGUNG
+
+	FROM CHINHANH_SANPHAM CN_SP
+	INNER JOIN CHITIETDONHANG_SANPHAM DH_SP
+	ON CN_SP.MASANPHAM = DH_SP.MASANPHAM AND
+		DH_SP.MADONHANG = @MaDonHang
+
+	IF EXISTS ( SELECT SOLUONGTON
+				FROM CHINHANH_SANPHAM
+				WHERE SOLUONGTON < 0 )
+
+	BEGIN
+		RAISERROR (N'Số lượng đang đặt vượt quá số lượng tồn của chi nhánh.', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
 COMMIT TRAN
 GO
 

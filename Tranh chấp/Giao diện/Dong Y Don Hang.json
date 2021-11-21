@@ -1,5 +1,13 @@
 [
     {
+        "id": "056b3f7f63de44e7",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "168b3ce88881bb4c",
         "type": "ui_text_input",
         "z": "056b3f7f63de44e7",
@@ -135,7 +143,7 @@
     {
         "id": "2d6bc61419501b7e",
         "type": "ui_tab",
-        "name": "KhachHang",
+        "name": "Dong Y Don Hang",
         "icon": "dashboard",
         "disabled": false,
         "hidden": false
