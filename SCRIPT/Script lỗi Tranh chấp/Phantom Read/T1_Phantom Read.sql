@@ -10,7 +10,7 @@ DECLARE
 -- tạo dữ liệu ảo
 -- =============================================
 INSERT INTO DONHANG ( MAKHACHHANG, MATAIXE, TINHTRANGDONHANG, PHIVANCHUYEN)
-VALUES (13, @MaTXE, N'111, đường testing', N'Đã nhận', 24000)
+VALUES (1, @MaTXE, N'Đã nhận', 24000)
 SELECT @MaDonHang = SCOPE_IDENTITY()
 
 -- =============================================
