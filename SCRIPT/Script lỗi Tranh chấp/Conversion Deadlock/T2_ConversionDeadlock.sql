@@ -22,13 +22,25 @@ BEGIN TRAN SET TRAN ISOLATION LEVEL SERIALIZABLE
 		RETURN
 	END
 
-	-- Hợp đồng chưa được duyệt
-	IF EXISTS (SELECT * FROM SelectPendingContract() WHERE MAHOPDONG = @MaHDong)
-	BEGIN
-		RAISERROR (N'Mã hợp động chưa được duyệt.', -1, -1)
-		ROLLBACK TRAN
-		RETURN
-	END
+	Declare @T Table 
+		(
+			MAHOPDONG INT,
+			MADOITAC INT,
+			MASOTHUE NVARCHAR(10),
+			NGUOIDAIDIEN NVARCHAR(255),
+			SOCHINHANHDANGKI NUMERIC(18, 0),
+			PHANTRAMHOAHONG FLOAT,
+			THOIGIANHIEULUC INT,
+			TINHTRANGPHIKICHHOAT bit
+		)
+		Insert @T Exec View_PendingContract NULL 
+		-- Hợp đồng chưa được duyệt
+		IF EXISTS (Select * from @T WHERE MAHOPDONG = @MaHDong)
+		BEGIN
+			RAISERROR (N'Mã hợp động chưa được duyệt.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
 
 	-- Hợp đồng vẫn còn hiệu lực
 	ELSE IF (GETDATE() < (SELECT MAX(t.THOIGIANKETTHUCCHUKI) FROM THEODOIHOPDONG t WHERE t.MAHOPDONG = @MaHDong))
