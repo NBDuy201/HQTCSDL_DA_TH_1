@@ -405,6 +405,54 @@ BEGIN
 	COMMIT
 END
 GO
+
+-- =============================================
+--- Xóa sản phẩm khỏi chi nhánh
+--- Input: Mã đối tác, Mã chi nhánh, Mã sản phẩm
+--- Output: Sản phẩm được xóa khỏi chi nhánh do đối tác quản lý
+-- =============================================
+CREATE OR ALTER PROCEDURE deleteSanPham_ChiNhanh
+	@MaDTac  int,
+	@MaCNhanh int,
+	@MaSPham  int
+AS
+BEGIN
+	BEGIN TRAN
+		-- Thông tin nhập rỗng hoặc không tồn tại
+		IF (@MaDTac IS NULL OR NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac)) OR
+			(@MaCNhanh IS NULL OR NOT EXISTS (SELECT* FROM CHINHANH WHERE MACHINHANH = @MaCNhanh)) OR
+			(@MaSPham IS NULL OR NOT EXISTS (SELECT* FROM SANPHAM WHERE MASANPHAM = @MaSPham))
+		BEGIN
+			RAISERROR (N'Thông tin nhập không hợp lệ hoặc bị để trống.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Chi nhánh không thuộc quyền quản lý của đối tác
+		IF @MaDTac != (SELECT MADOITAC FROM CHINHANH WHERE MACHINHANH = @MaCNhanh)
+		BEGIN
+			RAISERROR (N'Chi nhánh không thuộc quyền quản lý của bạn.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Sản phẩm không có tại chi nhánh
+		IF NOT EXISTS (SELECT* FROM CHINHANH_SANPHAM WHERE MASANPHAM = @MaSPham AND MACHINHANH = @MaCNhanh)
+		BEGIN
+			RAISERROR (N'Chi nhánh không có sản phẩm này.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Xóa sản phẩm
+		DELETE FROM CHINHANH_SANPHAM 
+		WHERE 
+			MACHINHANH = @MaCNhanh AND
+			MASANPHAM = @MaSPham
+	COMMIT
+END
+GO
+
 --========================================================================================================================
 --========================================================================================================================
 -- Khách hàng ============================================================================================================
@@ -448,11 +496,12 @@ CREATE OR ALTER PROCEDURE View_DoiTac_SanPham (@MaDoiTac int)
 AS
 BEGIN
 	BEGIN TRAN
-		SELECT SP.MASANPHAM, SP.TENSANPHAM, SP.GIASANPHAM
-		FROM DOITAC DT, CHINHANH CN, CHINHANH_SANPHAM CN_SP, SANPHAM SP
-		WHERE DT.MADOITAC = CN.MADOITAC AND
-			  CN.MACHINHANH = CN_SP.MASANPHAM AND
-			  CN_SP.MASANPHAM = SP.MASANPHAM
+		SELECT SP.MASANPHAM, SP.TENSANPHAM, SP.GIASANPHAM, CN.MACHINHANH
+		FROM CHINHANH CN, CHINHANH_SANPHAM CN_SP, SANPHAM SP
+		WHERE 
+			CN.MADOITAC = @MaDoiTac and
+			CN_SP.MACHINHANH = CN.MACHINHANH AND
+			CN_SP.MASANPHAM = SP.MASANPHAM
 	COMMIT TRAN
 END
 
