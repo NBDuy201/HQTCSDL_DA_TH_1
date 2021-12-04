@@ -1,32 +1,20 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
--- T2: tương đương với proc XemDonHang
--- Lỗi ở đây: Tài xế xem đơn hàng chưa commit
+-- T2: tương đương với proc View_DoiTac_SanPham
+-- Khách hàng xem sản phẩm tại các chi nhánh của đối tác 1
+-- Lỗi: Khách hàng xem được giá mới của sản phẩm dù chưa update
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 GO
 
-DECLARE @MaTaiXe INT = 1
+DECLARE @MaDoiTac INT = 1
 BEGIN TRAN
-	IF @MaTaiXe IS NULL OR NOT EXISTS ( SELECT MATAIXE FROM TAIXE )
-	BEGIN
-		RAISERROR (N'Mã tài xế không hợp lệ.', -1, -1)
-		ROLLBACK TRAN
-		RETURN 
-	END
-
-	DECLARE @KhuVuc varchar(255)
-	SET @KhuVuc = ( SELECT KHUVUCHOATDONG FROM TAIXE WHERE MATAIXE=@MaTaiXe )
-	IF @KhuVuc IS NULL
-	BEGIN
-		RAISERROR (N'Tài xế chưa cập nhật khu vực hoạt động.', -1, -1)
-		ROLLBACK TRAN
-		RETURN 
-	END
-
-	SELECT kh.HOTEN, dh.DIACHIGIAODEN, dh.HINHTHUCTHANHTOAN, dh.PHIVANCHUYEN, dh.TONGPHISANPHAM
-	FROM DONHANG dh JOIN KHACHHANG kh ON dh.MAKHACHHANG = kh.MAKHACHHANG
-	WHERE dh.TINHTRANGDONHANG = N'Đồng ý' AND dh.DIACHIGIAODEN LIKE '%' + @KhuVuc
+	SELECT SP.MASANPHAM, SP.TENSANPHAM, SP.GIASANPHAM, CN_SP.SOLUONGTON, CN.MACHINHANH
+	FROM CHINHANH CN, CHINHANH_SANPHAM CN_SP, SANPHAM SP
+	WHERE 
+		CN.MADOITAC = @MaDoiTac and
+		CN_SP.MACHINHANH = CN.MACHINHANH AND
+		CN_SP.MASANPHAM = SP.MASANPHAM AND
+		CN_SP.SOLUONGTON <> 0
 COMMIT TRAN
 GO
--- Tài xế vẫn thấy Mã đơn hàng 5 dù tình trạng đơn hàng = 'Chưa đồng ý'

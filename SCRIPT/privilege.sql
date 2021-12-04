@@ -60,6 +60,9 @@ GRANT EXEC ON View_Contract TO [PartnerROLE]
 GRANT EXEC ON insertContract TO [PartnerROLE]
 GRANT EXEC ON updateTinhTrangDonHang TO [PartnerROLE]
 GRANT EXEC ON updateDiaChi TO [PartnerROLE]
+GRANT EXEC ON deleteSanPham_ChiNhanh TO [PartnerROLE]
+GRANT EXEC ON updateSLSanPham_ChiNhanh TO [PartnerROLE]
+GRANT EXEC ON update_GiaSanPham TO [PartnerROLE]
 GO
 
 --[Phân hệ khách hàng(MAKHACHHANG)]---------------------------------------------------

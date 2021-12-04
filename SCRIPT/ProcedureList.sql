@@ -453,6 +453,111 @@ BEGIN
 END
 GO
 
+-- =============================================
+--- Cập nhật số lượng sản phẩm của chi nhánh
+--- Input: Mã đối tác, Mã chi nhánh, Mã sản phẩm, Số lượng
+--- Output: Số lượng sản phẩm tại chi nhánh được cập nhật
+-- =============================================
+CREATE OR ALTER PROCEDURE updateSLSanPham_ChiNhanh
+	@MaDTac  int,
+	@MaCNhanh int,
+	@MaSPham  INT,
+	@SLuong INT
+AS
+BEGIN
+	BEGIN TRAN
+		-- Thông tin nhập rỗng hoặc không tồn tại
+		IF (@MaDTac IS NULL OR NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac)) OR
+			(@MaCNhanh IS NULL OR NOT EXISTS (SELECT* FROM CHINHANH WHERE MACHINHANH = @MaCNhanh)) OR
+			(@MaSPham IS NULL OR NOT EXISTS (SELECT* FROM SANPHAM WHERE MASANPHAM = @MaSPham)) OR
+			(@SLuong < 0)
+		BEGIN
+			RAISERROR (N'Thông tin nhập không hợp lệ hoặc bị để trống.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Chi nhánh không thuộc quyền quản lý của đối tác
+		IF @MaDTac != (SELECT MADOITAC FROM CHINHANH WHERE MACHINHANH = @MaCNhanh)
+		BEGIN
+			RAISERROR (N'Chi nhánh không thuộc quyền quản lý của bạn.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Sản phẩm không có tại chi nhánh
+		IF NOT EXISTS (SELECT* FROM CHINHANH_SANPHAM WHERE MASANPHAM = @MaSPham AND MACHINHANH = @MaCNhanh)
+		BEGIN
+			RAISERROR (N'Chi nhánh không có sản phẩm này.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Update số lượng sản phẩm
+		UPDATE CHINHANH_SANPHAM
+		SET SOLUONGTON = @SLuong
+		WHERE MACHINHANH = @MaCNhanh AND
+				MASANPHAM = @MaSPham
+	COMMIT
+END
+GO
+
+-- =============================================
+--- Cập nhật giá sản phẩm
+--- Input: Mã đối tác, Mã sản phẩm, Giá sản phẩm
+--- Output: Sản phẩm sẽ được cập nhật giá
+-- =============================================
+CREATE OR ALTER PROCEDURE update_GiaSanPham
+	@MaDTac  int,
+	@MaSPham  INT,
+	@Gia NUMERIC(8, 2)
+AS
+BEGIN
+	BEGIN TRAN
+		-- Mã đối tác không hợp lệ
+		IF @MaDTac IS NULL OR NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac)
+		BEGIN
+			RAISERROR (N'Mã đối tác không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Mã sản phẩm không hợp lệ
+		IF @MaSPham IS NULL OR NOT EXISTS (SELECT* FROM SANPHAM WHERE MASANPHAM = @MaSPham)
+		BEGIN
+			RAISERROR (N'Mã sản phẩm không hợp lệ.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Mã sản phẩm không hợp lệ
+		IF @Gia < 0
+		BEGIN
+			RAISERROR (N'Giá không được âm.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Update sản phẩm không thuộc về đối tác
+		IF NOT EXISTS (SELECT *
+						FROM CHINHANH_SANPHAM c_s JOIN CHINHANH c 
+						ON c_s.MACHINHANH = c.MACHINHANH
+						WHERE c.MADOITAC = @MaDTac AND
+								c_s.MASANPHAM = @MaSPham)
+		BEGIN
+			RAISERROR (N'Không được cập nhật sản phẩm không phải của bạn.', -1, -1)
+			ROLLBACK TRAN
+			RETURN
+		END
+
+		-- Update số lượng sản phẩm
+		UPDATE SANPHAM
+		SET GIASANPHAM = @Gia
+		WHERE MASANPHAM = @MaSPham
+	COMMIT
+END
+GO
+
 --========================================================================================================================
 --========================================================================================================================
 -- Khách hàng ============================================================================================================
@@ -489,14 +594,14 @@ GO
 -- =============================================
 --- Xem sản phẩm của 1 đối tác
 --- Input: Mã đối tác
---- Output: Danh sách mã, tên, giá sản phẩm của các chi nhánh của đối tác
+--- Output: Danh sách mã, tên, giá sản phẩm, số lượng tồn của các chi nhánh của đối tác
 -- =============================================
 CREATE OR ALTER PROCEDURE View_DoiTac_SanPham (@MaDoiTac int)
 
 AS
 BEGIN
 	BEGIN TRAN
-		SELECT SP.MASANPHAM, SP.TENSANPHAM, SP.GIASANPHAM, CN.MACHINHANH
+		SELECT SP.MASANPHAM, SP.TENSANPHAM, SP.GIASANPHAM, CN_SP.SOLUONGTON, CN.MACHINHANH
 		FROM CHINHANH CN, CHINHANH_SANPHAM CN_SP, SANPHAM SP
 		WHERE 
 			CN.MADOITAC = @MaDoiTac and

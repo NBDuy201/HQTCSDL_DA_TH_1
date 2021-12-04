@@ -30,3 +30,7 @@ BEGIN TRAN
 COMMIT TRAN
 GO
 -- Tài xế vẫn thấy Mã đơn hàng 5 dù tình trạng đơn hàng = 'Chưa đồng ý'
+SELECT DH.MADONHANG, dh.MATAIXE, dh.TINHTRANGDONHANG
+FROM DONHANG DH
+WHERE DH.MADONHANG = 5
+GO

@@ -2,6 +2,7 @@
 GO
 
 -- T1: tương đương với proc DongY_DonHang
+-- Khách hàng đồng ý đơn hàng nhưng gặp sự cố nên rollback trở về tình trạng là 'Chưa đồng ý'
 DECLARE @MaDonHang bigint = 5
 BEGIN TRAN
 	-- Đơn hàng không ở tình trạng chưa đồng ý
@@ -50,10 +51,4 @@ BEGIN TRAN
 		RETURN
 	END
 COMMIT TRAN
-GO
-
--- Mã đơn hàng 5 có tình trạng đơn hàng = 'Chưa đồng ý'
-SELECT DH.MADONHANG, dh.MATAIXE, dh.TINHTRANGDONHANG
-FROM DONHANG DH
-WHERE DH.MADONHANG = 5
 GO

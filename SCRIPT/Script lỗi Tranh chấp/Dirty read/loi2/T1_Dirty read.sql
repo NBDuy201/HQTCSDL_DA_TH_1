@@ -1,59 +1,61 @@
 ﻿USE [QLDatChuyenHangOnl]
 GO
 
--- T1: tương đương với proc DongY_DonHang
-DECLARE @MaDonHang bigint = 5
+-- T1: tương đương với proc update_GiaSanPham
+-- Đối tác 1 cập nhật lại giá của sản phẩm 1 từ 30.00 -> 5.00 nhưng transaction fail
+DECLARE	
+	@MaDTac  INT = 1,
+	@MaSPham  INT = 1,
+	@Gia NUMERIC(8, 2) = 5
 BEGIN TRAN
-	-- Đơn hàng không ở tình trạng chưa đồng ý
-	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
+	-- Mã đối tác không hợp lệ
+	IF @MaDTac IS NULL OR NOT EXISTS (SELECT* FROM DOITAC WHERE MADOITAC = @MaDTac)
 	BEGIN
-		RAISERROR (N'Đơn này đã được đồng ý rồi.', -1, -1)
+		RAISERROR (N'Mã đối tác không hợp lệ.', -1, -1)
 		ROLLBACK TRAN
 		RETURN
 	END
 
-	-- Đơn hàng chưa có sản phẩm nào
-	IF NOT EXISTS ( SELECT CT.MADONHANG
-					FROM DONHANG DH, CHITIETDONHANG_SANPHAM CT 
-					WHERE CT.MADONHANG = DH.MADONHANG )
+	-- Mã sản phẩm không hợp lệ
+	IF @MaSPham IS NULL OR NOT EXISTS (SELECT* FROM SANPHAM WHERE MASANPHAM = @MaSPham)
 	BEGIN
-		RAISERROR (N'Đơn hàng chưa có sản phẩm nào.', -1, -1)
+		RAISERROR (N'Mã sản phẩm không hợp lệ.', -1, -1)
 		ROLLBACK TRAN
 		RETURN
 	END
 
-	-- Cập nhật tình trạng đơn hàng
-	UPDATE DONHANG 
-	SET TINHTRANGDONHANG = N'Đồng ý'
-	WHERE MADONHANG = @MaDonHang
-
-	-- Gặp sự cố
-	WAITFOR DELAY '00:00:05';
-	ROLLBACK TRAN
-	RETURN
-
-	UPDATE CHINHANH_SANPHAM
-	SET SOLUONGTON = SOLUONGTON - DH_SP.SOLUONGTUONGUNG
-
-	FROM CHINHANH_SANPHAM CN_SP
-	INNER JOIN CHITIETDONHANG_SANPHAM DH_SP
-	ON CN_SP.MASANPHAM = DH_SP.MASANPHAM AND
-		DH_SP.MADONHANG = @MaDonHang
-
-	IF EXISTS ( SELECT SOLUONGTON
-				FROM CHINHANH_SANPHAM
-				WHERE SOLUONGTON < 0 )
-
+	-- Mã sản phẩm không hợp lệ
+	IF @Gia < 0
 	BEGIN
-		RAISERROR (N'Số lượng đang đặt vượt quá số lượng tồn của chi nhánh.', -1, -1)
+		RAISERROR (N'Giá không được âm.', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
+
+	-- Update sản phẩm không thuộc về đối tác
+	IF NOT EXISTS (SELECT *
+					FROM CHINHANH_SANPHAM c_s JOIN CHINHANH c 
+					ON c_s.MACHINHANH = c.MACHINHANH
+					WHERE c.MADOITAC = @MaDTac AND
+							c_s.MASANPHAM = @MaSPham)
+	BEGIN
+		RAISERROR (N'Không được cập nhật sản phẩm không phải của bạn.', -1, -1)
+		ROLLBACK TRAN
+		RETURN
+	END
+
+	-- Update số lượng sản phẩm
+	UPDATE SANPHAM
+	SET GIASANPHAM = @Gia
+	WHERE MASANPHAM = @MaSPham
+
+	WAITFOR DELAY '00:00:05'
+
+	-- Xảy ra lỗi
+	BEGIN
+		RAISERROR (N'Xảy ra lỗi (không được update).', -1, -1)
 		ROLLBACK TRAN
 		RETURN
 	END
 COMMIT TRAN
-GO
-
--- Mã đơn hàng 5 có tình trạng đơn hàng = 'Chưa đồng ý'
-SELECT DH.MADONHANG, dh.MATAIXE, dh.TINHTRANGDONHANG
-FROM DONHANG DH
-WHERE DH.MADONHANG = 5
 GO
