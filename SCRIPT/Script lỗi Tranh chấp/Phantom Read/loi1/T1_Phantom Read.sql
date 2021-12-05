@@ -1,18 +1,9 @@
-﻿GO
-USE [QLDatChuyenHangOnl]
+﻿USE [QLDatChuyenHangOnl]
 GO
-
 
 DECLARE
 	@MaTXE int = 3,
-	@MaDonHang int
--- =============================================
--- tạo dữ liệu ảo
--- =============================================
-INSERT INTO DONHANG ( MAKHACHHANG, MATAIXE, TINHTRANGDONHANG, PHIVANCHUYEN)
-VALUES (1, @MaTXE, N'Đã nhận', 24000)
-SELECT @MaDonHang = SCOPE_IDENTITY()
-
+	@MaDonHang INT = 3
 -- =============================================
 -- T1: PROCEDURE quản trị viên xóa đi 1 đơn hàng
 -- nhưng có mức cô lập là Read Uncommitted
@@ -31,4 +22,3 @@ BEGIN TRAN SET TRAN ISOLATION LEVEL READ UNCOMMITTED
 	WHERE MADONHANG = @MaDonHang
 COMMIT TRAN
 GO
-

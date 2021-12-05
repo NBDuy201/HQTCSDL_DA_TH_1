@@ -1,18 +1,10 @@
-﻿GO
-USE [QLDatChuyenHangOnl]
+﻿USE [QLDatChuyenHangOnl]
 GO
 
 
 DECLARE
 	@MaTXE int = 3,
-	@MaDonHang int
--- =============================================
--- tạo dữ liệu ảo
--- =============================================
-INSERT INTO DONHANG ( MAKHACHHANG, MATAIXE, TINHTRANGDONHANG, PHIVANCHUYEN)
-VALUES (1, @MaTXE, N'Đã nhận', 24000)
-SELECT @MaDonHang = SCOPE_IDENTITY()
-
+	@MaDonHang INT = 3
 -- =============================================
 -- T1_FIX
 -- T1: không đổi
