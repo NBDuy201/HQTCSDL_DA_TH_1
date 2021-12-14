@@ -641,15 +641,20 @@ END
 
 GO
 
+-- Tạo kiểu dữ liệu bảng gồm (MaChiNhanh, MaSanPham, SoLuong)
+CREATE TYPE SanPham_SoLuong_Type AS TABLE (MaChiNhanh int, MaSanPham int, SoLuong int)
+
+GO
 -- =============================================
 --- Thêm 1 đơn hàng mới:
---- Input: Mã khách hàng, địa chỉ giao đến, hình thứ thanh toán
+--- Input: Mã khách hàng, địa chỉ giao đến, hình thức thanh toán, danh sách các mã sản phẩm
 --- Output: Mã đơn hàng vừa thêm
 -- =============================================
 CREATE OR ALTER PROCEDURE Insert_DonHang
 	@MaKhachHang int,
-	@DiaChiGiaoDen varchar(255), 
-	@HinhThucThanhToan nvarchar(255)
+	@DiaChiGiaoDen nvarchar(255), 
+	@HinhThucThanhToan nvarchar(255),
+	@SP_SL SanPham_SoLuong_Type READONLY
 
 AS
 BEGIN
@@ -665,115 +670,98 @@ BEGIN
 		-- Tạo mã đơn hàng mới (auto increase)
 		DECLARE @MaDonHang int
 
-		-- Thêm thông tin vào bảng 
+		-- Thêm thông tin vào bảng đơn hàng
 		INSERT INTO DONHANG ( MAKHACHHANG, DIACHIGIAODEN, HINHTHUCTHANHTOAN, TINHTRANGDONHANG, TONGPHISANPHAM )
 		VALUES (@MaKhachHang, @DiaChiGiaoDen, @HinhThucThanhToan, N'Chưa đồng ý', 0 )
 
+		-- Lấy mã đơn hàng vừa thêm
 		SELECT @MaDonHang = SCOPE_IDENTITY()
-		-- Trả về mã đơn hàng
-		-- RETURN @MaDonHang 
+		
+		-- Thêm thông tin vào bảng Chi tiết đơn hàng
+
+		--Khai báo biến để lưu nội dung đọc
+		DECLARE @MaChiNhanh int
+		DECLARE @MaSanPham int
+		DECLARE @SoLuong int
+
+		-- Khai báo con trỏ tới dữ liệu
+		DECLARE cursorSP_SL CURSOR FOR
+		SELECT MaChiNhanh, MaSanPham, SoLuong FROM @SP_SL
+		
+		OPEN cursorSP_SL 
+		-- Đọc dòng đầu tiên
+		FETCH NEXT FROM cursorSP_SL INTO @MaChiNhanh, @MaSanPham, @SoLuong
+		
+		-- Vòng lặp WHILE khi đọc Cursor thành công
+		WHILE @@FETCH_STATUS = 0          
+		BEGIN
+			-- Số lượng thêm ít hơn số lượng tồn của chi nhánh 
+			IF @SoLuong > ( SELECT SUM(CN_SP.SOLUONGTON)
+							FROM SANPHAM SP, CHINHANH_SANPHAM CN_SP 
+							WHERE CN_SP.MACHINHANH = @MaChiNhanh AND
+								  CN_SP.MASANPHAM = SP.MASANPHAM )
+				BEGIN
+					RAISERROR (N'Số lượng đang đặt vượt quá số lượng tồn của chi nhánh.', -1, -1)
+					ROLLBACK TRAN
+					RETURN
+				END
+
+			-- Tính phí sản phẩm tương ứng
+			DECLARE @PhiSanPham numeric(8, 2)
+			SET @PhiSanPham = @SoLuong * ( SELECT GIASANPHAM
+										   FROM SANPHAM
+										   WHERE MASANPHAM = @MaSanPham )
+
+			IF @PhiSanPham is null
+			BEGIN
+				RAISERROR (N'Phí sản phẩm không hợp lệ', -1, -1)
+				ROLLBACK TRAN
+				RETURN
+			END
+
+			-- Nếu sản phẩm đã có trong chi tiết đơn hàng thì chỉ cập nhật lại số lượng tương ứng
+			IF EXISTS ( SELECT * 
+						FROM CHITIETDONHANG_SANPHAM
+						WHERE MASANPHAM = @MaSanPham AND
+							  MADONHANG = @MaDonHang )
+			BEGIN
+				UPDATE CHITIETDONHANG_SANPHAM
+				SET SOLUONGTUONGUNG = @SoLuong
+				WHERE MASANPHAM = @MaSanPham AND
+					  MADONHANG = @MaDonHang
+			END
+			ELSE
+			BEGIN
+				--  Thêm thông tin vào bảng
+				BEGIN TRY
+					INSERT INTO CHITIETDONHANG_SANPHAM ( MADONHANG, MASANPHAM, SOLUONGTUONGUNG, PHISANPHAM )
+					VALUES ( @MaDonHang, @MaSanPham, @SoLuong, @PhiSanPham )
+				END TRY
+				BEGIN CATCH
+					RAISERROR (N'Đã xảy ra lỗi khi thêm sản phẩm vào đơn hàng', -1, -1)
+					ROLLBACK TRAN
+					RETURN
+				END CATCH
+			END
+			-- Đọc dòng tiếp
+			FETCH NEXT FROM cursorSP_SL INTO @MaChiNhanh, @MaSanPham, @SoLuong
+		END
+
+		-- Cập nhật tổng phí sản phẩm
+			BEGIN
+				UPDATE DONHANG 
+				SET TONGPHISANPHAM = ( 
+				SELECT SUM(PHISANPHAM)
+				FROM CHITIETDONHANG_SANPHAM
+				WHERE MADONHANG = @MaDonHang )
+				WHERE MADONHANG = @MaDonHang
+			END
+
 	COMMIT TRAN
 END
 
 GO
 
--- =============================================
---- Thêm 1 sản phẩm vào đơn hàng:
---- Input: Mã Đơn hàng, Mã sản phẩm, Số lượng 
---- Output: 
--- =============================================
-CREATE OR ALTER PROCEDURE Insert_ChiTietDonHang
-	@MaDonHang bigint, 
-	@MaSanPham int, 
-	@MaChiNhanh int,
-	@SoLuong numeric
-
-AS
-BEGIN
-	BEGIN TRAN
-	-- Mã đơn hàng để trống hoặc không tồn tại
-	IF @MaDonHang IS NULL OR NOT EXISTS ( SELECT MADONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang)
-		BEGIN
-			RAISERROR (N'Mã đơn hàng không hợp lệ.', -1, -1)
-			ROLLBACK TRAN
-			RETURN
-		END
-
-	-- Mã sản phẩm để trống hoặc không tồn tại
-	IF @MaSanPham IS NULL OR NOT EXISTS ( SELECT MASANPHAM FROM SANPHAM SP WHERE SP.MASANPHAM = @MaSanPham )
-		BEGIN
-			RAISERROR (N'Mã sản phẩm không hợp lệ.', -1, -1)
-			ROLLBACK TRAN
-			RETURN
-		END
-
-	-- Mã chi nhánh để trống hoặc không tồn tại
-	IF @MaChiNhanh IS NULL OR NOT EXISTS ( SELECT MACHINHANH FROM CHINHANH CN WHERE CN.MACHINHANH = @MaChiNhanh)
-		BEGIN
-			RAISERROR (N'Mã chi nhánh không hợp lệ.', -1, -1)
-			ROLLBACK TRAN
-			RETURN
-		END
-
-	-- Đơn hàng đã được khách hàng đồng ý trước đó
-	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
-		BEGIN
-			RAISERROR (N'Không thể thêm sản phẩm vào đơn hàng đã đi giao.', -1, -1)
-			ROLLBACK TRAN
-			RETURN
-		END
-
-	-- Số lượng thêm ít hơn số lượng tồn của chi nhánh đang chọn
-	IF @SoLuong > ( SELECT SUM(CN_SP.SOLUONGTON)
-					FROM SANPHAM SP, CHINHANH_SANPHAM CN_SP 
-					WHERE CN_SP.MACHINHANH = @MaChiNhanh AND
-						  CN_SP.MASANPHAM = SP.MASANPHAM )
-		BEGIN
-			RAISERROR (N'Số lượng đang đặt vượt quá số lượng tồn của chi nhánh.', -1, -1)
-			ROLLBACK TRAN
-			RETURN
-		END
-
-	-- Tính phí sản phẩm tương ứng
-	DECLARE @PhiSanPham numeric(8, 2)
-	SET @PhiSanPham = @SoLuong * ( SELECT GIASANPHAM
-								   FROM SANPHAM
-								   WHERE MASANPHAM = @MaSanPham )
-
-	IF @PhiSanPham is null
-	BEGIN
-		RAISERROR (N'Phí sản phẩm không hợp lệ', -1, -1)
-		ROLLBACK TRAN
-		RETURN
-	END
-
-	-- Nếu sản phẩm đã có trong chi tiết đơn hàng thì chỉ cập nhật lại số lượng tương ứng
-	IF EXISTS ( SELECT * 
-				FROM CHITIETDONHANG_SANPHAM
-				WHERE MASANPHAM = @MaSanPham AND
-					  MADONHANG = @MaDonHang )
-	BEGIN
-		UPDATE CHITIETDONHANG_SANPHAM
-		SET SOLUONGTUONGUNG = @SoLuong
-		WHERE MASANPHAM = @MaSanPham AND
-				MADONHANG = @MaDonHang
-		COMMIT TRAN
-	END
-	ELSE
-	BEGIN
-		--  Thêm thông tin vào bảng
-		BEGIN TRY
-			INSERT INTO CHITIETDONHANG_SANPHAM ( MADONHANG, MASANPHAM, SOLUONGTUONGUNG, PHISANPHAM )
-			VALUES ( @MaDonHang, @MaSanPham, @SoLuong, @PhiSanPham )
-		END TRY
-		BEGIN CATCH
-			RAISERROR (N'Đã xảy ra lỗi khi thêm sản phẩm vào đơn hàng', -1, -1)
-			ROLLBACK TRAN
-			RETURN
-		END CATCH
-		COMMIT TRAN
-	END
-END
 
 GO
 
