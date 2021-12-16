@@ -757,6 +757,7 @@ BEGIN
 				WHERE MADONHANG = @MaDonHang
 			END
 
+		SELECT @MaDonHang 'MADONHANG'
 	COMMIT TRAN
 END
 
@@ -852,7 +853,7 @@ BEGIN
 			RETURN 
 		END
 
-		SELECT kh.HOTEN, dh.DIACHIGIAODEN, dh.HINHTHUCTHANHTOAN, dh.PHIVANCHUYEN, dh.TONGPHISANPHAM
+		SELECT dh.MADONHANG, kh.HOTEN, dh.DIACHIGIAODEN, dh.HINHTHUCTHANHTOAN, dh.PHIVANCHUYEN, dh.TONGPHISANPHAM
 		FROM DONHANG dh JOIN KHACHHANG kh ON dh.MAKHACHHANG = kh.MAKHACHHANG
 		WHERE dh.TINHTRANGDONHANG = N'Đồng ý' AND dh.DIACHIGIAODEN LIKE '%' + @KhuVuc
 	COMMIT TRAN
@@ -978,7 +979,7 @@ BEGIN
 		SET @sql = 'USE ' + @safe_db + ';' +
 				   'CREATE LOGIN ' + @safe_username + ' WITH PASSWORD=''' + @safe_password + '''; ' +
 				   'CREATE USER ' + @safe_username + ' FOR LOGIN ' + @safe_username + '; ' +
-				   'ALTER ROLE [ParnerROLE] ADD MEMBER ' + @safe_username + ';'
+				   'ALTER ROLE [PartnerROLE] ADD MEMBER ' + @safe_username + ';'
 		EXEC (@sql)
 	COMMIT TRAN
 END
