@@ -1,0 +1,7289 @@
+[
+    {
+        "id": "63f6c2ee84a61f5c",
+        "type": "tab",
+        "label": "Flow - Login",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "70ddf0179a234a8b",
+        "type": "tab",
+        "label": "Staff - PendingContract",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e3cf6e078635d4e1",
+        "type": "tab",
+        "label": "Staff - Contract",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bb012dda12b20707",
+        "type": "tab",
+        "label": "Partner - Contract",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "be1d4845a9e835a1",
+        "type": "tab",
+        "label": "Partner - Product",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c049f9c34a26678f",
+        "type": "tab",
+        "label": "Partner - Order",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "919c77f6f15703cf",
+        "type": "tab",
+        "label": "Customer - Order",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "645dcdc52c80e548",
+        "type": "tab",
+        "label": "Driver - Order",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7e76ceb3aaed06cf",
+        "type": "tab",
+        "label": "Admin - New Account",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6eae2b5f8dbfb881",
+        "type": "MSSQL-CN",
+        "tdsVersion": "7_4",
+        "name": "SQLEXPRESS",
+        "server": "VUBINH-PC\\SQLEXPRESS",
+        "port": "1433",
+        "encyption": false,
+        "trustServerCertificate": false,
+        "database": "QLDatChuyenHangOnl",
+        "useUTC": false,
+        "connectTimeout": "15000",
+        "requestTimeout": "15000",
+        "cancelTimeout": "5000",
+        "pool": "5",
+        "parseJSON": false,
+        "enableArithAbort": true
+    },
+    {
+        "id": "b46ad38f8d7e75ff",
+        "type": "ui_tab",
+        "name": "Login",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "43e11c793dea94c1",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "88d1b6259375b9e1",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "b46ad38f8d7e75ff",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "caa59b5619f9c3a9",
+        "type": "ui_tab",
+        "name": "[Staff] PendingContract",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4c69d978435f65be",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "caa59b5619f9c3a9",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c37f789d5fa66dd7",
+        "type": "ui_group",
+        "name": "PendingContract",
+        "tab": "caa59b5619f9c3a9",
+        "order": 2,
+        "disp": true,
+        "width": "14",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f3538da00bf6e8fd",
+        "type": "ui_spacer",
+        "z": "70ddf0179a234a8b",
+        "name": "spacer",
+        "group": "4c69d978435f65be",
+        "order": 1,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "e41ecbceecb7bf75",
+        "type": "ui_spacer",
+        "z": "70ddf0179a234a8b",
+        "name": "spacer",
+        "group": "4c69d978435f65be",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "128abd4e1607a32c",
+        "type": "ui_spacer",
+        "z": "70ddf0179a234a8b",
+        "name": "spacer",
+        "group": "4c69d978435f65be",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f26e8bdd867f141e",
+        "type": "ui_spacer",
+        "z": "70ddf0179a234a8b",
+        "name": "spacer",
+        "group": "4c69d978435f65be",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "600170276a072af5",
+        "type": "ui_spacer",
+        "z": "70ddf0179a234a8b",
+        "name": "spacer",
+        "group": "4c69d978435f65be",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "d004d75c5e2f4d51",
+        "type": "ui_spacer",
+        "z": "70ddf0179a234a8b",
+        "name": "spacer",
+        "group": "4c69d978435f65be",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c482faf0264e24f5",
+        "type": "ui_tab",
+        "name": "[Staff] Contract",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4138e96016fe52ab",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "c482faf0264e24f5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7cdfd2a3a196b83e",
+        "type": "ui_group",
+        "name": "Contract",
+        "tab": "c482faf0264e24f5",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "44028876dbcd8284",
+        "type": "ui_tab",
+        "name": "[Partner] Contract",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "cee210a4f0627a55",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "44028876dbcd8284",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e8e62ace4b9756b9",
+        "type": "ui_group",
+        "name": "Contract",
+        "tab": "44028876dbcd8284",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3fa0c2798d7e0a6a",
+        "type": "ui_tab",
+        "name": "[Partner] Product",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "09d2cbf79a1c5ab9",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "3fa0c2798d7e0a6a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "19388dc36b977c83",
+        "type": "ui_group",
+        "name": "Product",
+        "tab": "3fa0c2798d7e0a6a",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "24a1aae33e6595fa",
+        "type": "ui_tab",
+        "name": "[Partner] Order",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a4a41faffe416e86",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "24a1aae33e6595fa",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5cf7cdd00d13735d",
+        "type": "ui_group",
+        "name": "Order",
+        "tab": "24a1aae33e6595fa",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8d335c9161763b5c",
+        "type": "ui_tab",
+        "name": "[Customer] Order",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4f81bcc8b260ca25",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "8d335c9161763b5c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c0c658f857309d4a",
+        "type": "ui_group",
+        "name": "Product",
+        "tab": "8d335c9161763b5c",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "31ffc065387c7072",
+        "type": "ui_group",
+        "name": "Cart",
+        "tab": "8d335c9161763b5c",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "78d7b344b1cd6ded",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4f81bcc8b260ca25",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "39c7de6f4d2b1f7e",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4f81bcc8b260ca25",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "44dd6a2823886566",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4f81bcc8b260ca25",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "c60d9b6e050f1b04",
+        "type": "ui_tab",
+        "name": "[Driver] Order",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3b4bea4f255b43d3",
+        "type": "ui_group",
+        "name": "User",
+        "tab": "c60d9b6e050f1b04",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dcd6d47e547731fa",
+        "type": "ui_group",
+        "name": "Order",
+        "tab": "c60d9b6e050f1b04",
+        "order": 2,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "78ee625a96556b60",
+        "type": "ui_spacer",
+        "z": "645dcdc52c80e548",
+        "name": "spacer",
+        "group": "3b4bea4f255b43d3",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "f6f96db5a44b99f8",
+        "type": "ui_spacer",
+        "z": "645dcdc52c80e548",
+        "name": "spacer",
+        "group": "3b4bea4f255b43d3",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "5a095c6d02fd3cc9",
+        "type": "ui_spacer",
+        "z": "645dcdc52c80e548",
+        "name": "spacer",
+        "group": "3b4bea4f255b43d3",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "50023b106ca9d8dc",
+        "type": "ui_spacer",
+        "z": "645dcdc52c80e548",
+        "name": "spacer",
+        "group": "3b4bea4f255b43d3",
+        "order": 10,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6d1f55eb9a87abf6",
+        "type": "ui_spacer",
+        "z": "645dcdc52c80e548",
+        "name": "spacer",
+        "group": "dcd6d47e547731fa",
+        "order": 3,
+        "width": 14,
+        "height": 1
+    },
+    {
+        "id": "d2a7c4e3f0a0c0b7",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4138e96016fe52ab",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "8b05253128982bb9",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4138e96016fe52ab",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "8171f6651e3a7937",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4138e96016fe52ab",
+        "order": 8,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "cfe063c4f207db1c",
+        "type": "ui_spacer",
+        "z": "919c77f6f15703cf",
+        "name": "spacer",
+        "group": "4138e96016fe52ab",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "54b6e7e1a004cf9d",
+        "type": "ui_tab",
+        "name": "[Admin] New Account",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ba7942857b9778aa",
+        "type": "ui_group",
+        "name": "Driver",
+        "tab": "54b6e7e1a004cf9d",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d18a087972dcb6b3",
+        "type": "ui_group",
+        "name": "Partner",
+        "tab": "54b6e7e1a004cf9d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a208abe02a85e417",
+        "type": "ui_group",
+        "name": "Customer",
+        "tab": "54b6e7e1a004cf9d",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c54add0de1cb7b9e",
+        "type": "ui_spacer",
+        "z": "7e76ceb3aaed06cf",
+        "name": "spacer",
+        "group": "a208abe02a85e417",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "43f00766e2ae5462",
+        "type": "ui_spacer",
+        "z": "7e76ceb3aaed06cf",
+        "name": "spacer",
+        "group": "a208abe02a85e417",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "a97b64db146d99b5",
+        "type": "ui_spacer",
+        "z": "7e76ceb3aaed06cf",
+        "name": "spacer",
+        "group": "a208abe02a85e417",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "582761f9dc834397",
+        "type": "ui_spacer",
+        "z": "bb012dda12b20707",
+        "name": "spacer",
+        "group": "cee210a4f0627a55",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "6ce2c5bac1e1010d",
+        "type": "ui_spacer",
+        "z": "bb012dda12b20707",
+        "name": "spacer",
+        "group": "cee210a4f0627a55",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "84f545276a4f1754",
+        "type": "ui_spacer",
+        "z": "bb012dda12b20707",
+        "name": "spacer",
+        "group": "cee210a4f0627a55",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "478a6cb68906ad04",
+        "type": "ui_spacer",
+        "z": "be1d4845a9e835a1",
+        "name": "spacer",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "9d4650c3503cd09c",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 2,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "cae8302bb20f75f2",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 3,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "4c09e376ca547956",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 4,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "fada083ccf25ee5e",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 5,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "5ef5a4718c691748",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 6,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "64c63cd018d2a0ce",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 7,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "8d2674b7c79d21cd",
+        "type": "ui_spacer",
+        "z": "c049f9c34a26678f",
+        "name": "spacer",
+        "group": "a4a41faffe416e86",
+        "order": 9,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "7e034263af3ae505",
+        "type": "ui_form",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "label": "",
+        "group": "88d1b6259375b9e1",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Username",
+                "value": "name",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "pass",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "name": "",
+            "pass": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "4fa6bafcca6169ff",
+                "427f27dfe8ab039b",
+                "5cf2d7c7ac266175"
+            ]
+        ]
+    },
+    {
+        "id": "427f27dfe8ab039b",
+        "type": "MSSQL",
+        "z": "63f6c2ee84a61f5c",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: check login",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT pwdcompare(N'{{payload.pass}}', sl.password_hash) AS [Match]\r\nFROM master.sys.sql_logins sl\r\nWHERE sl.name = N'{{payload.name}}';",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "96ab1fb3c0315715"
+            ]
+        ]
+    },
+    {
+        "id": "20fc25a2f3357d6b",
+        "type": "MSSQL",
+        "z": "63f6c2ee84a61f5c",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: get role",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT * FROM (\r\n\tSELECT \r\n\t\tUser_Type = \r\n\t\t\tCASE mmbrp.[type] \r\n\t\t\tWHEN 'G' THEN 'Windows Group' \r\n\t\t\tWHEN 'S' THEN 'SQL User' \r\n\t\t\tWHEN 'U' THEN 'Windows User' \r\n\t\t\tEND,\r\n\t\tDatabase_User_Name = mmbrp.[name],\r\n\t\tLogin_Name = ul.[name],\r\n\t\tDB_Role = rolp.[name]\r\n\tFROM sys.database_role_members mmbr, -- The Role OR members associations table\r\n\t\tsys.database_principals rolp,     -- The DB Roles names table\r\n\t\tsys.database_principals mmbrp,    -- The Role members table (database users)\r\n\t\tsys.server_principals ul          -- The Login accounts table\r\n\tWHERE Upper (mmbrp.[type]) IN ( 'S', 'U', 'G' )\r\n\t\t-- No need for these system account types\r\n\t\tAND Upper (mmbrp.[name]) NOT IN ('SYS','INFORMATION_SCHEMA')\r\n\t\tAND rolp.[principal_id] = mmbr.[role_principal_id]\r\n\t\tAND mmbrp.[principal_id] = mmbr.[member_principal_id]\r\n\t\tAND ul.[sid] = mmbrp.[sid]\r\n\t\tAND rolp.[name] LIKE '%%%'\r\n) ROLE_TABLE\r\nWHERE Login_Name = '{{payload.name}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 290,
+        "y": 220,
+        "wires": [
+            [
+                "a24c0fac2a85e420",
+                "3f277c38bc52d2a1"
+            ]
+        ]
+    },
+    {
+        "id": "4fa6bafcca6169ff",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "save",
+        "rules": [
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "global",
+                "to": "payload.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "flow",
+                "to": "payload.pass",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96ab1fb3c0315715",
+        "type": "switch",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "property": "payload[0].Match",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "04601f68e07f13be"
+            ],
+            [
+                "1debaa275e949afc"
+            ]
+        ]
+    },
+    {
+        "id": "04601f68e07f13be",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "username",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.name",
+                "pt": "msg",
+                "to": "username",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 100,
+        "y": 220,
+        "wires": [
+            [
+                "20fc25a2f3357d6b",
+                "678e700ad1c9b820"
+            ]
+        ]
+    },
+    {
+        "id": "80b72f40c6a6ee12",
+        "type": "ui_toast",
+        "z": "63f6c2ee84a61f5c",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1070,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1debaa275e949afc",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Unsuccessfully",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "The Username or Password is Incorrect",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "80b72f40c6a6ee12"
+            ]
+        ]
+    },
+    {
+        "id": "0fa7874e1e158d6a",
+        "type": "ui_toast",
+        "z": "63f6c2ee84a61f5c",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "green",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1070,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a24c0fac2a85e420",
+        "type": "switch",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "property": "payload[0].DB_Role",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "AdminROLE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "StaffROLE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "PartnerROLE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "DriverROLE",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "CustomerROLE",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "5733dfc175738d5e"
+            ],
+            [
+                "944c99fe65838327"
+            ],
+            [
+                "dd1ed820868ad947"
+            ],
+            [
+                "5dbed85d1ebf6fc7"
+            ],
+            [
+                "345c1c967194e060"
+            ]
+        ]
+    },
+    {
+        "id": "b4ebe99e331d826e",
+        "type": "inject",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payloadType": "date",
+        "x": 510,
+        "y": 40,
+        "wires": [
+            [
+                "5cf2d7c7ac266175"
+            ]
+        ]
+    },
+    {
+        "id": "5cf2d7c7ac266175",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "hide all tab",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tabs\":{\"show\":\"Login\",\"hide\":[\"[Staff] PendingContract\",\"[Staff] Contract\",\"[Partner] Contract\",\"[Partner] Product\",\"[Partner] Order\",\"[Customer] Order\",\"[Driver] Order\",\"[Admin] New Account\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 40,
+        "wires": [
+            [
+                "d0c49d286e1038d2"
+            ]
+        ]
+    },
+    {
+        "id": "d0c49d286e1038d2",
+        "type": "ui_ui_control",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "events": "all",
+        "x": 1040,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f277c38bc52d2a1",
+        "type": "function",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Successfully",
+        "func": "var output = {}\noutput.payload = 'Wellcome ' + msg.payload[0].DB_Role\n\nreturn output;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 180,
+        "wires": [
+            [
+                "0fa7874e1e158d6a"
+            ]
+        ]
+    },
+    {
+        "id": "5733dfc175738d5e",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Tab: Admin",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tabs\":{\"show\":[\"Login\",\"[Admin] New Account\"],\"hide\":[\"[Staff] PendingContract\",\"[Staff] Contract\",\"[Partner] Contract\",\"[Partner] Product\",\"[Partner] Order\",\"[Customer] Order\",\"[Driver] Order\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [
+                "fa77fb087202bc4d"
+            ]
+        ]
+    },
+    {
+        "id": "944c99fe65838327",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Tab: Staff",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tabs\":{\"show\":[\"Login\",\"[Staff] PendingContract\",\"[Staff] Contract\"],\"hide\":[\"[Partner] Contract\",\"[Partner] Product\",\"[Partner] Order\",\"[Customer] Order\",\"[Driver] Order\",\"[Admin] New Account\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 320,
+        "wires": [
+            [
+                "fa77fb087202bc4d"
+            ]
+        ]
+    },
+    {
+        "id": "dd1ed820868ad947",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Tab: Partner",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tabs\":{\"show\":[\"Login\",\"[Partner] Contract\",\"[Partner] Product\",\"[Partner] Order\"],\"hide\":[\"[Staff] PendingContract\",\"[Staff] Contract\",\"[Customer] Order\",\"[Driver] Order\",\"[Admin] New Account\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 360,
+        "wires": [
+            [
+                "fa77fb087202bc4d",
+                "e446962eb959d07b"
+            ]
+        ]
+    },
+    {
+        "id": "5dbed85d1ebf6fc7",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Tab: Driver",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tabs\":{\"show\":[\"Login\",\"[Driver] Order\"],\"hide\":[\"[Staff] PendingContract\",\"[Staff] Contract\",\"[Partner] Contract\",\"[Partner] Product\",\"[Partner] Order\",\"[Customer] Order\",\"[Admin] New Account\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 400,
+        "wires": [
+            [
+                "fa77fb087202bc4d",
+                "993ca7a023a21b09"
+            ]
+        ]
+    },
+    {
+        "id": "345c1c967194e060",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "Tab: Customer",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"tabs\":{\"show\":[\"Login\",\"[Customer] Order\"],\"hide\":[\"[Staff] PendingContract\",\"[Staff] Contract\",\"[Partner] Contract\",\"[Partner] Product\",\"[Partner] Order\",\"[Driver] Order\",\"[Admin] New Account\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 440,
+        "wires": [
+            [
+                "fa77fb087202bc4d",
+                "8d61edc86846e4d3"
+            ]
+        ]
+    },
+    {
+        "id": "fa77fb087202bc4d",
+        "type": "ui_ui_control",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "events": "all",
+        "x": 1040,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "682f5993c25bc934",
+        "type": "inject",
+        "z": "63f6c2ee84a61f5c",
+        "name": "30min",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 580,
+        "wires": [
+            [
+                "b8f72c0816be55bc"
+            ]
+        ]
+    },
+    {
+        "id": "b8f72c0816be55bc",
+        "type": "MSSQL",
+        "z": "63f6c2ee84a61f5c",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: List-DoiTac",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC View_DoiTac",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 270,
+        "y": 580,
+        "wires": [
+            [
+                "6e46b481a22b51fd"
+            ]
+        ]
+    },
+    {
+        "id": "6e46b481a22b51fd",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "save DS_DOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "DS_DOITAC",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f5080b0c148908e4",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MATAIXE",
+                "pt": "global",
+                "to": "payload[0].MATAIXE",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1330,
+        "y": 540,
+        "wires": [
+            [
+                "8a2370c7efdd21a2"
+            ]
+        ]
+    },
+    {
+        "id": "678e700ad1c9b820",
+        "type": "function",
+        "z": "63f6c2ee84a61f5c",
+        "name": "save SDT",
+        "func": "//DOITAC:       DTA + SDT\n//KHACHHANG:    KHG + SDT\n//TAIXE:        TXE + SDT\nvar str = '' + msg.payload.name\n\nflow.set('SDT', str.substring(3))\n\nmsg.payload = str.substring(3)\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 100,
+        "y": 320,
+        "wires": [
+            [
+                "d06f1f9e6b73c911"
+            ]
+        ]
+    },
+    {
+        "id": "993ca7a023a21b09",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "get SDT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "SDT",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 540,
+        "wires": [
+            [
+                "c58402d1345446e5"
+            ]
+        ]
+    },
+    {
+        "id": "8d61edc86846e4d3",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "get SDT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "SDT",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 580,
+        "wires": [
+            [
+                "a3c439fee7fd48ce"
+            ]
+        ]
+    },
+    {
+        "id": "e446962eb959d07b",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "get SDT",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "SDT",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 500,
+        "wires": [
+            [
+                "98ecd849a729a082"
+            ]
+        ]
+    },
+    {
+        "id": "c58402d1345446e5",
+        "type": "MSSQL",
+        "z": "63f6c2ee84a61f5c",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: get_MATAIXE_from_SDT",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT MATAIXE FROM TAIXE WHERE SODIENTHOAI = '{{payload}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 970,
+        "y": 540,
+        "wires": [
+            [
+                "f5080b0c148908e4"
+            ]
+        ]
+    },
+    {
+        "id": "a3c439fee7fd48ce",
+        "type": "MSSQL",
+        "z": "63f6c2ee84a61f5c",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: get_MAKHACHHANG_from_SDT",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT MAKHACHHANG FROM KHACHHANG WHERE SODIENTHOAI = '{{payload}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 1000,
+        "y": 580,
+        "wires": [
+            [
+                "1d4f672abf6b56e3"
+            ]
+        ]
+    },
+    {
+        "id": "1d4f672abf6b56e3",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MAKHACHHANG",
+                "pt": "global",
+                "to": "payload[0].MAKHACHHANG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 580,
+        "wires": [
+            [
+                "8a2370c7efdd21a2"
+            ]
+        ]
+    },
+    {
+        "id": "d06f1f9e6b73c911",
+        "type": "debug",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8a2370c7efdd21a2",
+        "type": "debug",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1590,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "98ecd849a729a082",
+        "type": "MSSQL",
+        "z": "63f6c2ee84a61f5c",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: get_MADOITAC_from_SDT",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT MADOITAC FROM DOITAC WHERE SODIENTHOAI = '{{payload}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 980,
+        "y": 500,
+        "wires": [
+            [
+                "dcac088f8611896a"
+            ]
+        ]
+    },
+    {
+        "id": "dcac088f8611896a",
+        "type": "change",
+        "z": "63f6c2ee84a61f5c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADOITAC",
+                "pt": "global",
+                "to": "payload[0].MADOITAC",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1340,
+        "y": 500,
+        "wires": [
+            [
+                "8a2370c7efdd21a2"
+            ]
+        ]
+    },
+    {
+        "id": "aa9cd1e9c58e61ed",
+        "type": "ui_dropdown",
+        "z": "70ddf0179a234a8b",
+        "name": "",
+        "label": "Đối Tác",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4c69d978435f65be",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 760,
+        "y": 40,
+        "wires": [
+            [
+                "2131c6c17c727e35",
+                "02abb635646e0c64"
+            ]
+        ]
+    },
+    {
+        "id": "bbe7410e84b235d0",
+        "type": "function",
+        "z": "70ddf0179a234a8b",
+        "name": "",
+        "func": "msg.options = []\n\nvar MaDT, TenDT\n\nfor (const x in msg.payload) {\n    var DOITAC = {}\n    DOITAC[msg.payload[x].TENDOITAC] = msg.payload[x].MADOITAC\n    msg.options.push(DOITAC)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 40,
+        "wires": [
+            [
+                "aa9cd1e9c58e61ed"
+            ]
+        ]
+    },
+    {
+        "id": "03c990eba25c0e0c",
+        "type": "ui_table",
+        "z": "70ddf0179a234a8b",
+        "group": "c37f789d5fa66dd7",
+        "name": "PendingContract",
+        "order": 1,
+        "width": 14,
+        "height": 9,
+        "columns": [
+            {
+                "field": "MAHOPDONG",
+                "title": "HD",
+                "width": "60",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "MASOTHUE",
+                "title": "MSTHUE",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "NGUOIDAIDIEN",
+                "title": "Dai Dien",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "SOCHINHANHDANGKI",
+                "title": "Chi Nhanh",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "PHANTRAMHOAHONG",
+                "title": "%",
+                "width": "60",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "THOIGIANHIEULUC",
+                "title": "Hieu Luc",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 790,
+        "y": 180,
+        "wires": [
+            [
+                "ee4e389747c63c72",
+                "8af85e3a8a7708a4"
+            ]
+        ]
+    },
+    {
+        "id": "266cc59ff2b058ab",
+        "type": "MSSQL",
+        "z": "70ddf0179a234a8b",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_PendingContract",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC View_PendingContract {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "03c990eba25c0e0c"
+            ]
+        ]
+    },
+    {
+        "id": "ee4e389747c63c72",
+        "type": "ui_text",
+        "z": "70ddf0179a234a8b",
+        "group": "4c69d978435f65be",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Hợp Đồng",
+        "format": "{{msg.payload.MAHOPDONG}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 780,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6f8c5a57f014cdc1",
+        "type": "ui_button",
+        "z": "70ddf0179a234a8b",
+        "name": "",
+        "group": "4c69d978435f65be",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Duyệt Hợp Đồng",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "d03e87036015069b"
+            ]
+        ]
+    },
+    {
+        "id": "06c76131bd371d1c",
+        "type": "MSSQL",
+        "z": "70ddf0179a234a8b",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: Approve_Contract",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC Approve_Contract {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 810,
+        "y": 340,
+        "wires": [
+            [
+                "02abb635646e0c64",
+                "89a80f690c74335a",
+                "ba9a7a8f0c84227c"
+            ]
+        ]
+    },
+    {
+        "id": "2131c6c17c727e35",
+        "type": "change",
+        "z": "70ddf0179a234a8b",
+        "name": "save MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADOITAC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8af85e3a8a7708a4",
+        "type": "change",
+        "z": "70ddf0179a234a8b",
+        "name": "save MAHOPDONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MAHOPDONG",
+                "pt": "flow",
+                "to": "payload.MAHOPDONG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d03e87036015069b",
+        "type": "change",
+        "z": "70ddf0179a234a8b",
+        "name": "get MAHOPDONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MAHOPDONG",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "06c76131bd371d1c"
+            ]
+        ]
+    },
+    {
+        "id": "15dda1be5f7a3b08",
+        "type": "ui_button",
+        "z": "70ddf0179a234a8b",
+        "name": "Refresh",
+        "group": "4c69d978435f65be",
+        "order": 10,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "02abb635646e0c64"
+            ]
+        ]
+    },
+    {
+        "id": "02abb635646e0c64",
+        "type": "change",
+        "z": "70ddf0179a234a8b",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "266cc59ff2b058ab"
+            ]
+        ]
+    },
+    {
+        "id": "89a80f690c74335a",
+        "type": "change",
+        "z": "70ddf0179a234a8b",
+        "name": "save MAHOPDONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MAHOPDONG",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8de04b82e5d1ba3",
+        "type": "inject",
+        "z": "70ddf0179a234a8b",
+        "name": "30min",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "d4d67cc39660f543"
+            ]
+        ]
+    },
+    {
+        "id": "d4d67cc39660f543",
+        "type": "change",
+        "z": "70ddf0179a234a8b",
+        "name": "get DS_DOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "DS_DOITAC",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "bbe7410e84b235d0"
+            ]
+        ]
+    },
+    {
+        "id": "ba9a7a8f0c84227c",
+        "type": "ui_template",
+        "z": "70ddf0179a234a8b",
+        "group": "c37f789d5fa66dd7",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1060,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed9aa49968cd9f6c",
+        "type": "ui_table",
+        "z": "e3cf6e078635d4e1",
+        "group": "7cdfd2a3a196b83e",
+        "name": "Contract",
+        "order": 1,
+        "width": 20,
+        "height": 9,
+        "columns": [
+            {
+                "field": "MAHOPDONG",
+                "title": "HD",
+                "width": "60",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "TENDOITAC",
+                "title": "Doi Tac",
+                "width": "300",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "MASOTHUE",
+                "title": "MSTHUE",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "NGUOIDAIDIEN",
+                "title": "Dai Dien",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "SOCHINHANHDANGKI",
+                "title": "Chi Nhanh",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "PHANTRAMHOAHONG",
+                "title": "%",
+                "width": "60",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "THOIGIANHIEULUC",
+                "title": "Hieu Luc",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "TINHTRANGPHIKICHHOAT",
+                "title": "Kich Hoat",
+                "width": "",
+                "align": "left",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 760,
+        "y": 100,
+        "wires": [
+            [
+                "a36d087a9cefb80d",
+                "93b239ee8b063876",
+                "c630dfc697b2f46f"
+            ]
+        ]
+    },
+    {
+        "id": "2681896e1f5a2146",
+        "type": "MSSQL",
+        "z": "e3cf6e078635d4e1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_All_Contract",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT hd.*, dt.TENDOITAC\r\nFROM HOPDONG hd JOIN DOITAC dt ON hd.MADOITAC = dt.MADOITAC",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 530,
+        "y": 100,
+        "wires": [
+            [
+                "ed9aa49968cd9f6c"
+            ]
+        ]
+    },
+    {
+        "id": "a36d087a9cefb80d",
+        "type": "ui_text",
+        "z": "e3cf6e078635d4e1",
+        "group": "4138e96016fe52ab",
+        "order": 1,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Mã Hợp Đồng",
+        "format": "{{msg.payload.MAHOPDONG}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 780,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "93b239ee8b063876",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "save MAHOPDONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MAHOPDONG",
+                "pt": "flow",
+                "to": "payload.MAHOPDONG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbd21ed7ad0aa45b",
+        "type": "ui_button",
+        "z": "e3cf6e078635d4e1",
+        "name": "Refresh",
+        "group": "4138e96016fe52ab",
+        "order": 2,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "2681896e1f5a2146"
+            ]
+        ]
+    },
+    {
+        "id": "0ce4de004868de2a",
+        "type": "ui_text_input",
+        "z": "e3cf6e078635d4e1",
+        "name": "",
+        "label": "Hoa Hồng (%)",
+        "tooltip": "",
+        "group": "4138e96016fe52ab",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "46b47de365d48682"
+            ]
+        ]
+    },
+    {
+        "id": "3d4825036ccdddd7",
+        "type": "ui_text_input",
+        "z": "e3cf6e078635d4e1",
+        "name": "",
+        "label": "Thời gian hiệu lực (tháng)",
+        "tooltip": "",
+        "group": "4138e96016fe52ab",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 530,
+        "y": 300,
+        "wires": [
+            [
+                "1dfaa0c59d7c7e9b"
+            ]
+        ]
+    },
+    {
+        "id": "c630dfc697b2f46f",
+        "type": "switch",
+        "z": "e3cf6e078635d4e1",
+        "name": "Pending?",
+        "property": "payload.TINHTRANGPHIKICHHOAT",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 80,
+        "y": 300,
+        "wires": [
+            [
+                "a0985f77505f93c7"
+            ],
+            [
+                "eb3e8597f836936a"
+            ]
+        ]
+    },
+    {
+        "id": "eb3e8597f836936a",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "Enabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 320,
+        "wires": [
+            [
+                "48a089935d2df833",
+                "0ce4de004868de2a",
+                "3d4825036ccdddd7",
+                "29d0e6bfba666330",
+                "362fc92e4ef9ce8c"
+            ]
+        ]
+    },
+    {
+        "id": "a0985f77505f93c7",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "Disabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "48a089935d2df833",
+                "0ce4de004868de2a",
+                "3d4825036ccdddd7",
+                "29d0e6bfba666330",
+                "362fc92e4ef9ce8c"
+            ]
+        ]
+    },
+    {
+        "id": "48a089935d2df833",
+        "type": "ui_button",
+        "z": "e3cf6e078635d4e1",
+        "name": "",
+        "group": "4138e96016fe52ab",
+        "order": 7,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Gia hạn Hợp Đồng",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 510,
+        "y": 340,
+        "wires": [
+            [
+                "fc3436780bdc50bb"
+            ]
+        ]
+    },
+    {
+        "id": "fc3436780bdc50bb",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MAHOPDONG",
+                "pt": "msg",
+                "to": "MAHOPDONG",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.PHANTRAMHOAHONG",
+                "pt": "msg",
+                "to": "PHANTRAMHOAHONG",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.THOIGIANHIEULUC",
+                "pt": "msg",
+                "to": "THOIGIANHIEULUC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 340,
+        "wires": [
+            [
+                "194f6490a789521f"
+            ]
+        ]
+    },
+    {
+        "id": "46b47de365d48682",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "save PHANTRAMHOAHONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "PHANTRAMHOAHONG",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1dfaa0c59d7c7e9b",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "save THOIGIANHIEULUC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "THOIGIANHIEULUC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "194f6490a789521f",
+        "type": "MSSQL",
+        "z": "e3cf6e078635d4e1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: Extend_Contract",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC Extend_Contract {{payload.MAHOPDONG}} , {{payload.PHANTRAMHOAHONG}} , {{payload.THOIGIANHIEULUC}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 1100,
+        "y": 260,
+        "wires": [
+            [
+                "2681896e1f5a2146",
+                "b2a601e7f9b2a4e5"
+            ]
+        ]
+    },
+    {
+        "id": "b2a601e7f9b2a4e5",
+        "type": "ui_template",
+        "z": "e3cf6e078635d4e1",
+        "group": "7cdfd2a3a196b83e",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1340,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29d0e6bfba666330",
+        "type": "ui_text_input",
+        "z": "e3cf6e078635d4e1",
+        "name": "",
+        "label": "Tháng đóng phí",
+        "tooltip": "",
+        "group": "4138e96016fe52ab",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "month",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "19f293c79c6d3a6d"
+            ]
+        ]
+    },
+    {
+        "id": "19f293c79c6d3a6d",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "save THOIGIANBATDAUCHUKI ",
+        "rules": [
+            {
+                "t": "set",
+                "p": "THOIGIANBATDAUCHUKI",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "362fc92e4ef9ce8c",
+        "type": "ui_button",
+        "z": "e3cf6e078635d4e1",
+        "name": "",
+        "group": "4138e96016fe52ab",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Cập nhật đóng phí",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 510,
+        "y": 500,
+        "wires": [
+            [
+                "07c457930695ee90"
+            ]
+        ]
+    },
+    {
+        "id": "07c457930695ee90",
+        "type": "change",
+        "z": "e3cf6e078635d4e1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MAHOPDONG",
+                "pt": "msg",
+                "to": "MAHOPDONG",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.THOIGIANBATDAUCHUKI",
+                "pt": "msg",
+                "to": "THOIGIANBATDAUCHUKI",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 500,
+        "wires": [
+            [
+                "4c2ca33026b39eab"
+            ]
+        ]
+    },
+    {
+        "id": "4c2ca33026b39eab",
+        "type": "MSSQL",
+        "z": "e3cf6e078635d4e1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: Approve_MonthlyFee",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC Approve_MonthlyFee {{payload.MAHOPDONG}} , '{{payload.THOIGIANBATDAUCHUKI}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 1120,
+        "y": 460,
+        "wires": [
+            [
+                "2681896e1f5a2146",
+                "b2a601e7f9b2a4e5"
+            ]
+        ]
+    },
+    {
+        "id": "02230731e451da2c",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADOITAC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02f32081d58e09e7",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "02230731e451da2c",
+                "5c8a294263369cf1",
+                "56b729e81acb2372"
+            ]
+        ]
+    },
+    {
+        "id": "69e43bebbf1a0540",
+        "type": "MSSQL",
+        "z": "bb012dda12b20707",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_Contract",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC View_Contract {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "fd3bbb29cbb10129"
+            ]
+        ]
+    },
+    {
+        "id": "1be7d49accf5a09a",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save MAHOPDONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MAHOPDONG",
+                "pt": "flow",
+                "to": "payload.MAHOPDONG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "56b729e81acb2372",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "69e43bebbf1a0540"
+            ]
+        ]
+    },
+    {
+        "id": "c5b70f0fda58b8fa",
+        "type": "ui_text_input",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "label": "Mã Số Thuế",
+        "tooltip": "",
+        "group": "cee210a4f0627a55",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "de079eb995fc2ecc"
+            ]
+        ]
+    },
+    {
+        "id": "de079eb995fc2ecc",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save MASOTHUE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MASOTHUE",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1cd424d5c99ad08a",
+        "type": "ui_text_input",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "label": "Số Chi Nhanh",
+        "tooltip": "",
+        "group": "cee210a4f0627a55",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 280,
+        "y": 400,
+        "wires": [
+            [
+                "50204d7298b5bef5"
+            ]
+        ]
+    },
+    {
+        "id": "50204d7298b5bef5",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save SOCHINHANHDANGKI",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SOCHINHANHDANGKI",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "364c0c2692d368d4",
+        "type": "ui_text_input",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "label": "Hoa Hồng (%)",
+        "tooltip": "",
+        "group": "cee210a4f0627a55",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 280,
+        "y": 440,
+        "wires": [
+            [
+                "7d2ac98783530b88"
+            ]
+        ]
+    },
+    {
+        "id": "58685cd68446fdd4",
+        "type": "ui_text_input",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "label": "Đăng kí (Tháng)",
+        "tooltip": "Tháng",
+        "group": "cee210a4f0627a55",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 280,
+        "y": 480,
+        "wires": [
+            [
+                "94645113c54b98b6"
+            ]
+        ]
+    },
+    {
+        "id": "7d2ac98783530b88",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save PHANTRAMHOAHONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "PHANTRAMHOAHONG",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "94645113c54b98b6",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save THOIGIANHIEULUC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "THOIGIANHIEULUC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8cd461e30db145e8",
+        "type": "ui_button",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "group": "cee210a4f0627a55",
+        "order": 10,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Đăng kí Hợp Đồng",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 290,
+        "y": 520,
+        "wires": [
+            [
+                "4d1e420cd034cd63"
+            ]
+        ]
+    },
+    {
+        "id": "9ec83cbc3a6b063a",
+        "type": "ui_button",
+        "z": "bb012dda12b20707",
+        "name": "Refresh",
+        "group": "cee210a4f0627a55",
+        "order": 11,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 80,
+        "y": 180,
+        "wires": [
+            [
+                "56b729e81acb2372"
+            ]
+        ]
+    },
+    {
+        "id": "4d1e420cd034cd63",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MASOTHUE",
+                "pt": "msg",
+                "to": "MASOTHUE",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.NGUOIDAIDIEN",
+                "pt": "msg",
+                "to": "NGUOIDAIDIEN",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.SOCHINHANHDANGKI",
+                "pt": "msg",
+                "to": "SOCHINHANHDANGKI",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.PHANTRAMHOAHONG",
+                "pt": "msg",
+                "to": "PHANTRAMHOAHONG",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.THOIGIANHIEULUC",
+                "pt": "msg",
+                "to": "THOIGIANHIEULUC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 520,
+        "wires": [
+            [
+                "18073eeb69e8c331"
+            ]
+        ]
+    },
+    {
+        "id": "18073eeb69e8c331",
+        "type": "MSSQL",
+        "z": "bb012dda12b20707",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: insertContract",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC insertContract {{payload.MADOITAC}}, '{{payload.MASOTHUE}}', '{{payload.NGUOIDAIDIEN}}', {{payload.SOCHINHANHDANGKI}}, {{payload.PHANTRAMHOAHONG}}, {{payload.THOIGIANHIEULUC}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "56b729e81acb2372",
+                "79c026c8aab2a6d5"
+            ]
+        ]
+    },
+    {
+        "id": "79c026c8aab2a6d5",
+        "type": "ui_template",
+        "z": "bb012dda12b20707",
+        "group": "e8e62ace4b9756b9",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1060,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd3bbb29cbb10129",
+        "type": "ui_table",
+        "z": "bb012dda12b20707",
+        "group": "e8e62ace4b9756b9",
+        "name": "Contract",
+        "order": 1,
+        "width": 20,
+        "height": 9,
+        "columns": [
+            {
+                "field": "MAHOPDONG",
+                "title": "HD",
+                "width": "60",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "MASOTHUE",
+                "title": "MSTHUE",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "NGUOIDAIDIEN",
+                "title": "Dai Dien",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "SOCHINHANHDANGKI",
+                "title": "Chi Nhanh",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "PHANTRAMHOAHONG",
+                "title": "%",
+                "width": "60",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "THOIGIANHIEULUC",
+                "title": "Hieu Luc",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "TINHTRANGPHIKICHHOAT",
+                "title": "Kich Hoat",
+                "width": "",
+                "align": "left",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 760,
+        "y": 180,
+        "wires": [
+            [
+                "1be7d49accf5a09a"
+            ]
+        ]
+    },
+    {
+        "id": "5c8a294263369cf1",
+        "type": "ui_text",
+        "z": "bb012dda12b20707",
+        "group": "cee210a4f0627a55",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Đối Tác",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1b08d606ab24dbbe",
+        "type": "ui_text_input",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "label": "Người Đại Diện",
+        "tooltip": "",
+        "group": "cee210a4f0627a55",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 280,
+        "y": 320,
+        "wires": [
+            [
+                "c73ca5a1400c1b17"
+            ]
+        ]
+    },
+    {
+        "id": "c73ca5a1400c1b17",
+        "type": "change",
+        "z": "bb012dda12b20707",
+        "name": "save MASOTHUE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "NGUOIDAIDIEN",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e927778b9f048099",
+        "type": "ui_ui_control",
+        "z": "bb012dda12b20707",
+        "name": "",
+        "events": "change",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "02f32081d58e09e7"
+            ]
+        ]
+    },
+    {
+        "id": "c7962dad54c4b728",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "save MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADOITAC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd15bc3c21cd8346",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "c7962dad54c4b728",
+                "f008581f07c27993",
+                "8fcab83b5265bd7e"
+            ]
+        ]
+    },
+    {
+        "id": "f008581f07c27993",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "ffa2ce6c6d7d56d0"
+            ]
+        ]
+    },
+    {
+        "id": "ffa2ce6c6d7d56d0",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_All_Department",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT *\r\nFROM CHINHANH\r\nWHERE MADOITAC = {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "d23156e8b774d230"
+            ]
+        ]
+    },
+    {
+        "id": "901ebbb14510aa60",
+        "type": "ui_dropdown",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "label": "Chi Nhánh",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 1070,
+        "y": 180,
+        "wires": [
+            [
+                "740c39030f38c5f6",
+                "8149ebe01c4b60b0",
+                "6519058f5d88c60f"
+            ]
+        ]
+    },
+    {
+        "id": "d23156e8b774d230",
+        "type": "function",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "func": "msg.options = []\n\nvar MaDT, TenDT\n\nfor (const x in msg.payload) {\n    var MACHINHANH = {}\n    MACHINHANH[msg.payload[x].MACHINHANH] = {\n        \"MACHINHANH\": msg.payload[x].MACHINHANH,\n        \"DIACHICHINHANH\": msg.payload[x].DIACHICHINHANH\n    }\n    msg.options.push(MACHINHANH)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 180,
+        "wires": [
+            [
+                "901ebbb14510aa60"
+            ]
+        ]
+    },
+    {
+        "id": "9b2dee406c21d7ed",
+        "type": "ui_text_input",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "label": "Địa Chỉ Mới",
+        "tooltip": "",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 340,
+        "wires": [
+            [
+                "6538e52d07ee0b63"
+            ]
+        ]
+    },
+    {
+        "id": "6538e52d07ee0b63",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "save DIACHICHINHANH",
+        "rules": [
+            {
+                "t": "set",
+                "p": "DIACHICHINHANH",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "413e331ccfdd49f9",
+        "type": "ui_button",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Cập Nhật",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 380,
+        "wires": [
+            [
+                "cd5d432a430f78e3"
+            ]
+        ]
+    },
+    {
+        "id": "cd5d432a430f78e3",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MACHINHANH",
+                "pt": "msg",
+                "to": "MACHINHANH",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.DIACHICHINHANH",
+                "pt": "msg",
+                "to": "DIACHICHINHANH",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 380,
+        "wires": [
+            [
+                "0a8a0a88445d4c3c"
+            ]
+        ]
+    },
+    {
+        "id": "0a8a0a88445d4c3c",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: updateDiaChi",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC updateDiaChi {{payload.MADOITAC}} , {{payload.MACHINHANH}} , N'{{payload.DIACHICHINHANH}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 790,
+        "y": 340,
+        "wires": [
+            [
+                "0c9efea5a0006db2",
+                "3b42517a7d02379e"
+            ]
+        ]
+    },
+    {
+        "id": "3b42517a7d02379e",
+        "type": "ui_template",
+        "z": "be1d4845a9e835a1",
+        "group": "19388dc36b977c83",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1280,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "740c39030f38c5f6",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "save MACHINHANH",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MACHINHANH",
+                "pt": "flow",
+                "to": "payload.MACHINHANH",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8149ebe01c4b60b0",
+        "type": "ui_text",
+        "z": "be1d4845a9e835a1",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Địa chỉ:",
+        "format": "{{msg.payload.DIACHICHINHANH}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1060,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6519058f5d88c60f",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get MACHINHANH",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MACHINHANH",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 480,
+        "wires": [
+            [
+                "d6a632ced1ebec2e"
+            ]
+        ]
+    },
+    {
+        "id": "d6a632ced1ebec2e",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_Dep_Product",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT SANPHAM.MASANPHAM, TENSANPHAM, GIASANPHAM, SOLUONGTON \r\nFROM CHINHANH_SANPHAM JOIN SANPHAM ON CHINHANH_SANPHAM.MASANPHAM = SANPHAM.MASANPHAM\r\nWHERE MACHINHANH = {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 530,
+        "y": 480,
+        "wires": [
+            [
+                "66837c2352853988"
+            ]
+        ]
+    },
+    {
+        "id": "66837c2352853988",
+        "type": "ui_table",
+        "z": "be1d4845a9e835a1",
+        "group": "19388dc36b977c83",
+        "name": "Product",
+        "order": 1,
+        "width": 20,
+        "height": 9,
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 760,
+        "y": 480,
+        "wires": [
+            [
+                "77c0fffea68652a3",
+                "edfcaa16e3c8be17"
+            ]
+        ]
+    },
+    {
+        "id": "77c0fffea68652a3",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "save MASANPHAM",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MASANPHAM",
+                "pt": "flow",
+                "to": "payload.MASANPHAM",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "edfcaa16e3c8be17",
+        "type": "ui_text",
+        "z": "be1d4845a9e835a1",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Mã Sản Phẩm",
+        "format": "{{msg.payload.MASANPHAM}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 780,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "70000a9dae56ba5e",
+        "type": "ui_text_input",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "label": "Giá",
+        "tooltip": "",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 11,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 250,
+        "y": 720,
+        "wires": [
+            [
+                "06a17a99d92908df"
+            ]
+        ]
+    },
+    {
+        "id": "fb2e9bf58a73a4d6",
+        "type": "ui_text_input",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "label": "Số lượng",
+        "tooltip": "",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 580,
+        "wires": [
+            [
+                "9f84519b5033c7f1"
+            ]
+        ]
+    },
+    {
+        "id": "06a17a99d92908df",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "save DIACHICHINHANH",
+        "rules": [
+            {
+                "t": "set",
+                "p": "GIASANPHAM",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f84519b5033c7f1",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "save SOLUONGTON",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SOLUONGTON",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "570e6921b209e857",
+        "type": "ui_button",
+        "z": "be1d4845a9e835a1",
+        "name": "CheckSLuong",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 10,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-check",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 620,
+        "wires": [
+            [
+                "9ac37134d0f5e950"
+            ]
+        ]
+    },
+    {
+        "id": "9ac37134d0f5e950",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MACHINHANH",
+                "pt": "msg",
+                "to": "MACHINHANH",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MASANPHAM",
+                "pt": "msg",
+                "to": "MASANPHAM",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.SOLUONGTON",
+                "pt": "msg",
+                "to": "SOLUONGTON",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 620,
+        "wires": [
+            [
+                "fd8d373ae3696493"
+            ]
+        ]
+    },
+    {
+        "id": "fd8d373ae3696493",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: updateSLSanPham_ChiNhanh",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC updateSLSanPham_ChiNhanh {{payload.MADOITAC}}, {{payload.MACHINHANH}}, {{payload.MASANPHAM}}, {{payload.SOLUONGTON}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 850,
+        "y": 580,
+        "wires": [
+            [
+                "6519058f5d88c60f",
+                "3b42517a7d02379e"
+            ]
+        ]
+    },
+    {
+        "id": "c63923f14f778d06",
+        "type": "ui_button",
+        "z": "be1d4845a9e835a1",
+        "name": "CheckGia",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 12,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-check",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 760,
+        "wires": [
+            [
+                "f5fe2986dd88cc17"
+            ]
+        ]
+    },
+    {
+        "id": "f5fe2986dd88cc17",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MASANPHAM",
+                "pt": "msg",
+                "to": "MASANPHAM",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.GIASANPHAM",
+                "pt": "msg",
+                "to": "GIASANPHAM",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 760,
+        "wires": [
+            [
+                "22a5871316609aab"
+            ]
+        ]
+    },
+    {
+        "id": "22a5871316609aab",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: updateSLSanPham_ChiNhanh",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC update_GiaSanPham {{payload.MADOITAC}}, {{payload.MASANPHAM}}, {{payload.GIASANPHAM}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 850,
+        "y": 720,
+        "wires": [
+            [
+                "6519058f5d88c60f",
+                "3b42517a7d02379e"
+            ]
+        ]
+    },
+    {
+        "id": "f6356e8757e308b6",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_1_Department",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT *\r\nFROM CHINHANH\r\nWHERE MADOITAC = {{payload.MADOITAC}} AND MACHINHANH = {{payload.MACHINHANH}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "022d412665dec431",
+                "f008581f07c27993"
+            ]
+        ]
+    },
+    {
+        "id": "0c9efea5a0006db2",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MACHINHANH",
+                "pt": "msg",
+                "to": "MACHINHANH",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "f6356e8757e308b6"
+            ]
+        ]
+    },
+    {
+        "id": "022d412665dec431",
+        "type": "function",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "func": "var output = {\n    payload: {\n        \"DIACHICHINHANH\":\"\"\n    }\n}\n\noutput.payload.DIACHICHINHANH = msg.payload[0].DIACHICHINHANH\n\nreturn output;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 240,
+        "wires": [
+            [
+                "8149ebe01c4b60b0"
+            ]
+        ]
+    },
+    {
+        "id": "50167b76036b38b3",
+        "type": "ui_button",
+        "z": "be1d4845a9e835a1",
+        "name": "XoaSP",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Xóa Sản Phẩm",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 820,
+        "wires": [
+            [
+                "50bf301b4a98fab5"
+            ]
+        ]
+    },
+    {
+        "id": "50bf301b4a98fab5",
+        "type": "change",
+        "z": "be1d4845a9e835a1",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MACHINHANH",
+                "pt": "msg",
+                "to": "MACHINHANH",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MASANPHAM",
+                "pt": "msg",
+                "to": "MASANPHAM",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 820,
+        "wires": [
+            [
+                "198cfe7e4153e7de"
+            ]
+        ]
+    },
+    {
+        "id": "198cfe7e4153e7de",
+        "type": "MSSQL",
+        "z": "be1d4845a9e835a1",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: deleteSanPham_ChiNhanh",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC deleteSanPham_ChiNhanh {{payload.MADOITAC}}, {{payload.MACHINHANH}}, {{payload.MASANPHAM}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 840,
+        "y": 820,
+        "wires": [
+            [
+                "6519058f5d88c60f",
+                "3b42517a7d02379e"
+            ]
+        ]
+    },
+    {
+        "id": "4180d90ad38a5c5c",
+        "type": "ui_button",
+        "z": "be1d4845a9e835a1",
+        "name": "Refresh",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 80,
+        "y": 480,
+        "wires": [
+            [
+                "6519058f5d88c60f"
+            ]
+        ]
+    },
+    {
+        "id": "deb2b3f0fe228308",
+        "type": "ui_ui_control",
+        "z": "be1d4845a9e835a1",
+        "name": "",
+        "events": "change",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "bd15bc3c21cd8346"
+            ]
+        ]
+    },
+    {
+        "id": "8fcab83b5265bd7e",
+        "type": "ui_text",
+        "z": "be1d4845a9e835a1",
+        "group": "09d2cbf79a1c5ab9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Đối Tác",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "627dda09916e6b62",
+        "type": "change",
+        "z": "c049f9c34a26678f",
+        "name": "save MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADOITAC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b0f2c3beeec1f03",
+        "type": "change",
+        "z": "c049f9c34a26678f",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "627dda09916e6b62",
+                "77b3b090546830fd",
+                "89dc97e04d72e44e"
+            ]
+        ]
+    },
+    {
+        "id": "77b3b090546830fd",
+        "type": "change",
+        "z": "c049f9c34a26678f",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "28b9cae0c92eb40a"
+            ]
+        ]
+    },
+    {
+        "id": "28b9cae0c92eb40a",
+        "type": "MSSQL",
+        "z": "c049f9c34a26678f",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_1000_NewestOrder",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT top(1000) DONHANG.*\r\nFROM DONHANG JOIN CHINHANH ON DONHANG.MACHINHANH = CHINHANH.MACHINHANH\r\nWHERE MADOITAC = {{payload}}\r\nORDER BY MADONHANG DESC",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "224aaa8c79c20163"
+            ]
+        ]
+    },
+    {
+        "id": "224aaa8c79c20163",
+        "type": "ui_table",
+        "z": "c049f9c34a26678f",
+        "group": "5cf7cdd00d13735d",
+        "name": "Order",
+        "order": 1,
+        "width": 20,
+        "height": 9,
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 750,
+        "y": 180,
+        "wires": [
+            [
+                "44d7ed197a1ff002",
+                "17d73e38969bf70d"
+            ]
+        ]
+    },
+    {
+        "id": "44d7ed197a1ff002",
+        "type": "change",
+        "z": "c049f9c34a26678f",
+        "name": "save MADONHANG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADONHANG",
+                "pt": "flow",
+                "to": "payload.MADONHANG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "17d73e38969bf70d",
+        "type": "ui_text",
+        "z": "c049f9c34a26678f",
+        "group": "a4a41faffe416e86",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Đơn Hàng",
+        "format": "{{msg.payload.MADONHANG}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 780,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d1dbb911b751a877",
+        "type": "ui_button",
+        "z": "c049f9c34a26678f",
+        "name": "",
+        "group": "a4a41faffe416e86",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Giao Hàng",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"TINHTRANGDONHANG\":\"Đang giao\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "cd3544ff5327c85e"
+            ]
+        ]
+    },
+    {
+        "id": "9361ab92f7e46ce1",
+        "type": "ui_button",
+        "z": "c049f9c34a26678f",
+        "name": "",
+        "group": "a4a41faffe416e86",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Đã Nhận",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{\"TINHTRANGDONHANG\":\"Đã nhận\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 340,
+        "wires": [
+            [
+                "cd3544ff5327c85e"
+            ]
+        ]
+    },
+    {
+        "id": "cd3544ff5327c85e",
+        "type": "change",
+        "z": "c049f9c34a26678f",
+        "name": "get Data",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MADOITAC",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.MADONHANG",
+                "pt": "msg",
+                "to": "MADONHANG",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 300,
+        "wires": [
+            [
+                "378ec052f4ff0144"
+            ]
+        ]
+    },
+    {
+        "id": "378ec052f4ff0144",
+        "type": "MSSQL",
+        "z": "c049f9c34a26678f",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: updateTinhTrangDonHang",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC updateTinhTrangDonHang {{payload.MADOITAC}}, {{payload.MADONHANG}}, N'{{payload.TINHTRANGDONHANG}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 830,
+        "y": 300,
+        "wires": [
+            [
+                "77b3b090546830fd",
+                "9309cf6fc815b978"
+            ]
+        ]
+    },
+    {
+        "id": "9309cf6fc815b978",
+        "type": "ui_template",
+        "z": "c049f9c34a26678f",
+        "group": "5cf7cdd00d13735d",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1060,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89dc97e04d72e44e",
+        "type": "ui_text",
+        "z": "c049f9c34a26678f",
+        "group": "a4a41faffe416e86",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Đối Tác",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b96813faa7fd9178",
+        "type": "ui_ui_control",
+        "z": "c049f9c34a26678f",
+        "name": "",
+        "events": "all",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "5b0f2c3beeec1f03"
+            ]
+        ]
+    },
+    {
+        "id": "f35c4f13e7dc68cc",
+        "type": "ui_dropdown",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "label": "Đối Tác",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4f81bcc8b260ca25",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 760,
+        "y": 40,
+        "wires": [
+            [
+                "0c2ac642f8c9ae26",
+                "ba3b52df3c9a342e",
+                "fb03921615f0f2b7"
+            ]
+        ]
+    },
+    {
+        "id": "ab8f0a45eb350d3f",
+        "type": "function",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "func": "msg.options = []\n\nvar MaDT, TenDT\n\nfor (const x in msg.payload) {\n    var DOITAC = {}\n    DOITAC[msg.payload[x].TENDOITAC] = msg.payload[x].MADOITAC\n    msg.options.push(DOITAC)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 40,
+        "wires": [
+            [
+                "f35c4f13e7dc68cc"
+            ]
+        ]
+    },
+    {
+        "id": "0c2ac642f8c9ae26",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADOITAC",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 40,
+        "wires": [
+            [
+                "5c37fa101bb502f9"
+            ]
+        ]
+    },
+    {
+        "id": "2402c89ba9afac8c",
+        "type": "inject",
+        "z": "919c77f6f15703cf",
+        "name": "30min",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "966b6be2ce0f7df6"
+            ]
+        ]
+    },
+    {
+        "id": "966b6be2ce0f7df6",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "get DS_DOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "DS_DOITAC",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "ab8f0a45eb350d3f"
+            ]
+        ]
+    },
+    {
+        "id": "fb03921615f0f2b7",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "get MADOITAC",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADOITAC",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "bfd512600949e807"
+            ]
+        ]
+    },
+    {
+        "id": "bfd512600949e807",
+        "type": "MSSQL",
+        "z": "919c77f6f15703cf",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_DoiTac_SanPham",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC View_DoiTac_SanPham {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "614846001b603e8a",
+                "4013c28a89e567c4"
+            ]
+        ]
+    },
+    {
+        "id": "614846001b603e8a",
+        "type": "ui_table",
+        "z": "919c77f6f15703cf",
+        "group": "c0c658f857309d4a",
+        "name": "Product",
+        "order": 1,
+        "width": 20,
+        "height": 9,
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 760,
+        "y": 180,
+        "wires": [
+            [
+                "54061835f7ddaa2f",
+                "11cd490967114289",
+                "203a85ccdd5ef9c8"
+            ]
+        ]
+    },
+    {
+        "id": "54061835f7ddaa2f",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save MASANPHAM",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MASANPHAM",
+                "pt": "flow",
+                "to": "payload.MASANPHAM",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 180,
+        "wires": [
+            [
+                "c08d3691fa1061d8"
+            ]
+        ]
+    },
+    {
+        "id": "c08d3691fa1061d8",
+        "type": "ui_text",
+        "z": "919c77f6f15703cf",
+        "group": "4f81bcc8b260ca25",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Mã Sản Phẩm",
+        "format": "{{msg.payload.MASANPHAM}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1360,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5c37fa101bb502f9",
+        "type": "ui_text",
+        "z": "919c77f6f15703cf",
+        "group": "31ffc065387c7072",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Đối Tác",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1350,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cc020945a21b074b",
+        "type": "ui_text_input",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "label": "Số lượng",
+        "tooltip": "",
+        "group": "4f81bcc8b260ca25",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "1ad264c40240f205"
+            ]
+        ]
+    },
+    {
+        "id": "1ad264c40240f205",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save SoLuong",
+        "rules": [
+            {
+                "t": "set",
+                "p": "SoLuong",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48d0529277561ec6",
+        "type": "ui_button",
+        "z": "919c77f6f15703cf",
+        "name": "add",
+        "group": "4f81bcc8b260ca25",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-plus",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "f696f77b3a7da695"
+            ]
+        ]
+    },
+    {
+        "id": "304b0ddb329611b1",
+        "type": "ui_button",
+        "z": "919c77f6f15703cf",
+        "name": "minus",
+        "group": "4f81bcc8b260ca25",
+        "order": 8,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "grey",
+        "className": "",
+        "icon": "fa-minus",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "bf8bc8eacab52f88"
+            ]
+        ]
+    },
+    {
+        "id": "409efb2d7691d5ff",
+        "type": "ui_button",
+        "z": "919c77f6f15703cf",
+        "name": "Refresh",
+        "group": "4f81bcc8b260ca25",
+        "order": 5,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 80,
+        "y": 180,
+        "wires": [
+            [
+                "fb03921615f0f2b7"
+            ]
+        ]
+    },
+    {
+        "id": "ba3b52df3c9a342e",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "reset MASANPHAM",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MASANPHAM",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 80,
+        "wires": [
+            [
+                "54061835f7ddaa2f"
+            ]
+        ]
+    },
+    {
+        "id": "f696f77b3a7da695",
+        "type": "function",
+        "z": "919c77f6f15703cf",
+        "name": "add Product",
+        "func": "var Product = flow.get('TENSANPHAM') || ''\nvar MASANPHAM = flow.get('MASANPHAM')\nvar MACHINHANH = flow.get('MACHINHANH')\nif (Product == '') return;\n\nvar Cart = flow.get('Cart') || {}\nif (Cart[Product] == undefined) {\n    Cart[Product] = {\n        \"MASANPHAM\": MASANPHAM,\n        \"MACHINHANH\": MACHINHANH,\n        \"SOLUONGTUONGUNG\": 0\n    }\n}\nCart[Product].SOLUONGTUONGUNG += flow.get('SoLuong');\nflow.set('Cart', Cart)\n\n\n//Make html\nvar html = `<ul>`;\nfor (const x in Cart) {\n    html += `<li>` + x + `: ` + Cart[x].SOLUONGTUONGUNG + `</li>` \n}\nhtml += `</ul>`\n\n\nmsg = {}\nmsg.payload = html\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "800f7b775a0d83cc"
+            ]
+        ]
+    },
+    {
+        "id": "bf8bc8eacab52f88",
+        "type": "function",
+        "z": "919c77f6f15703cf",
+        "name": "minus Product",
+        "func": "var Product = flow.get('TENSANPHAM') || ''\nvar MASANPHAM = flow.get('MASANPHAM')\nvar MACHINHANH = flow.get('MACHINHANH')\nif (Product == '') return;\n\nvar Cart = flow.get('Cart') || {}\nif (Cart[Product] !== undefined) {\n    Cart[Product].SOLUONGTUONGUNG -= flow.get('SoLuong');\n    \n    if (Cart[Product].SOLUONGTUONGUNG <= 0) delete Cart[Product]\n}\nflow.set('Cart', Cart)\n \n//Make html\nvar html = `<ul>`;\nfor (const x in Cart) {\n    html += `<li>` + x + `: ` + Cart[x].SOLUONGTUONGUNG + `</li>` \n}\nhtml += `</ul>`\n\n\nmsg = {}\nmsg.payload = html\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 360,
+        "wires": [
+            [
+                "800f7b775a0d83cc"
+            ]
+        ]
+    },
+    {
+        "id": "800f7b775a0d83cc",
+        "type": "ui_template",
+        "z": "919c77f6f15703cf",
+        "group": "31ffc065387c7072",
+        "name": "Cart",
+        "order": 2,
+        "width": 6,
+        "height": 8,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "9355efc5c558d8fc"
+            ]
+        ]
+    },
+    {
+        "id": "11cd490967114289",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save TENSANPHAM",
+        "rules": [
+            {
+                "t": "set",
+                "p": "TENSANPHAM",
+                "pt": "flow",
+                "to": "payload.TENSANPHAM",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c48827a244810be3",
+        "type": "ui_template",
+        "z": "919c77f6f15703cf",
+        "group": "c0c658f857309d4a",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1340,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ee1ccfa8c561946a",
+        "type": "ui_text_input",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "label": "Địa chỉ giao đến",
+        "tooltip": "",
+        "group": "4f81bcc8b260ca25",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 500,
+        "y": 440,
+        "wires": [
+            [
+                "a00a2d0f3ab2773e"
+            ]
+        ]
+    },
+    {
+        "id": "897b0cb87ae839a1",
+        "type": "ui_dropdown",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "label": "Hình thức thanh toán",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4f81bcc8b260ca25",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "COD",
+                "value": "COD",
+                "type": "str"
+            },
+            {
+                "label": "VISA/Master Card",
+                "value": "VISA",
+                "type": "str"
+            },
+            {
+                "label": "Momo",
+                "value": "MOMO",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "6e5865f7f4f143db"
+            ]
+        ]
+    },
+    {
+        "id": "a00a2d0f3ab2773e",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save DIACHIGIAODEN",
+        "rules": [
+            {
+                "t": "set",
+                "p": "DIACHIGIAODEN",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6e5865f7f4f143db",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save HINHTHUCTHANHTOAN",
+        "rules": [
+            {
+                "t": "set",
+                "p": "HINHTHUCTHANHTOAN",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 830,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3468f58ca927d9f",
+        "type": "function",
+        "z": "919c77f6f15703cf",
+        "name": "Query (Cart)",
+        "func": "var Cart = flow.get('Cart') || {}\nvar query = \"DECLARE @CART SanPham_SoLuong_Type;\"\n\nfor (const x in Cart) {\n    query += \"INSERT INTO @CART VALUES (\";\n    query += Cart[x].MACHINHANH + \",\" + Cart[x].MASANPHAM + \",\" + Cart[x].SOLUONGTUONGUNG + \");\"\n}\n\nvar MAKHACHHANG = global.get('MAKHACHHANG') || 1\nvar DIACHIGIAODEN = flow.get('DIACHIGIAODEN')\nvar HINHTHUCTHANHTOAN = flow.get('HINHTHUCTHANHTOAN')\n\nquery += \"EXEC Insert_DonHang \" + MAKHACHHANG + \",N'\" + DIACHIGIAODEN + \"',N'\" + HINHTHUCTHANHTOAN + \"', @CART;\"\n\nmsg = {}\nmsg.payload = query\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1070,
+        "y": 520,
+        "wires": [
+            [
+                "f7aa0b04fbc4767f",
+                "8b7237218fd1be10",
+                "c95267a2676c2a94"
+            ]
+        ]
+    },
+    {
+        "id": "75214343eae01d98",
+        "type": "switch",
+        "z": "919c77f6f15703cf",
+        "name": "<= 0",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 890,
+        "y": 520,
+        "wires": [
+            [
+                "6a652d722dc377dc"
+            ],
+            [
+                "a3468f58ca927d9f"
+            ]
+        ]
+    },
+    {
+        "id": "8b169f76e5abf25c",
+        "type": "function",
+        "z": "919c77f6f15703cf",
+        "name": "Check",
+        "func": "if (flow.get('Cart') == undefined) msg.payload = 0\nelse msg.payload = Object.keys(flow.get('Cart')).length\n\nif (msg.payload == 0) return msg;\n\nvar DIACHIGIAODEN = flow.get('DIACHIGIAODEN');\nif (DIACHIGIAODEN == undefined || DIACHIGIAODEN.length < 5) msg.payload = 0;\n\nvar HINHTHUCTHANHTOAN = flow.get('HINHTHUCTHANHTOAN');\nif (HINHTHUCTHANHTOAN == undefined) msg.payload = 0;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 520,
+        "wires": [
+            [
+                "75214343eae01d98"
+            ]
+        ]
+    },
+    {
+        "id": "18dca35967619f65",
+        "type": "inject",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 580,
+        "wires": [
+            [
+                "7fdb725f906ad8c4",
+                "79f79321cde2c7e2",
+                "0efb772c617ed8e3"
+            ]
+        ]
+    },
+    {
+        "id": "203a85ccdd5ef9c8",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save MACHINHANH",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MACHINHANH",
+                "pt": "flow",
+                "to": "payload.MACHINHANH",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2611c06a89a84b2c",
+        "type": "ui_button",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "group": "4f81bcc8b260ca25",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Xác Nhận Đơn Hàng",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 520,
+        "y": 520,
+        "wires": [
+            [
+                "8b169f76e5abf25c"
+            ]
+        ]
+    },
+    {
+        "id": "f7aa0b04fbc4767f",
+        "type": "MSSQL",
+        "z": "919c77f6f15703cf",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: Insert_DonHang",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC View_DoiTac_SanPham {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "msg",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 1380,
+        "y": 520,
+        "wires": [
+            [
+                "c48827a244810be3",
+                "e3f3c25c49f06844"
+            ]
+        ]
+    },
+    {
+        "id": "c3aad777ea80b937",
+        "type": "ui_toast",
+        "z": "919c77f6f15703cf",
+        "position": "bottom left",
+        "displayTime": "3",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1090,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "6a652d722dc377dc",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "Unsuccessfully",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Bạn chưa hoàn thành đơn hàng",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 440,
+        "wires": [
+            [
+                "c3aad777ea80b937"
+            ]
+        ]
+    },
+    {
+        "id": "647a91c60dbff607",
+        "type": "ui_button",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "group": "31ffc065387c7072",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Thanh Toán",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 490,
+        "y": 680,
+        "wires": [
+            [
+                "914c697444be42ca"
+            ]
+        ]
+    },
+    {
+        "id": "e3f3c25c49f06844",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "save MADONHANG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADONHANG",
+                "pt": "flow",
+                "to": "payload[0].MADONHANG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1380,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "914c697444be42ca",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "get MADONHANG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADONHANG",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 680,
+        "wires": [
+            [
+                "622071b84aef2f66",
+                "7fdb725f906ad8c4"
+            ]
+        ]
+    },
+    {
+        "id": "622071b84aef2f66",
+        "type": "MSSQL",
+        "z": "919c77f6f15703cf",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: DongY_DonHang",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC DongY_DonHang {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 1110,
+        "y": 680,
+        "wires": [
+            [
+                "c48827a244810be3"
+            ]
+        ]
+    },
+    {
+        "id": "5b85da695939c090",
+        "type": "ui_button",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "group": "31ffc065387c7072",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Hủy",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 470,
+        "y": 720,
+        "wires": [
+            [
+                "e57b72cdc1d81387"
+            ]
+        ]
+    },
+    {
+        "id": "e57b72cdc1d81387",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "get MADONHANG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MADONHANG",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 720,
+        "wires": [
+            [
+                "7fdb725f906ad8c4"
+            ]
+        ]
+    },
+    {
+        "id": "9355efc5c558d8fc",
+        "type": "function",
+        "z": "919c77f6f15703cf",
+        "name": "Cart is not Empty (Enable/Disable)",
+        "func": "if (flow.get('Cart') == undefined) msg.payload = 0\nelse msg.payload = Object.keys(flow.get('Cart')).length\n\nmsg.enabled = (msg.payload == 0)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 140,
+        "wires": [
+            [
+                "f35c4f13e7dc68cc"
+            ]
+        ]
+    },
+    {
+        "id": "7fdb725f906ad8c4",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "remove Cart",
+        "rules": [
+            {
+                "t": "set",
+                "p": "Cart",
+                "pt": "flow",
+                "to": "{}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 580,
+        "wires": [
+            [
+                "79f79321cde2c7e2",
+                "0efb772c617ed8e3",
+                "bf8bc8eacab52f88"
+            ]
+        ]
+    },
+    {
+        "id": "8b7237218fd1be10",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "Enabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 680,
+        "wires": [
+            [
+                "647a91c60dbff607",
+                "5b85da695939c090"
+            ]
+        ]
+    },
+    {
+        "id": "79f79321cde2c7e2",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "Disabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 720,
+        "wires": [
+            [
+                "5b85da695939c090",
+                "647a91c60dbff607"
+            ]
+        ]
+    },
+    {
+        "id": "c95267a2676c2a94",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "Disabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 460,
+        "wires": [
+            [
+                "2611c06a89a84b2c",
+                "897b0cb87ae839a1",
+                "ee1ccfa8c561946a"
+            ]
+        ]
+    },
+    {
+        "id": "0efb772c617ed8e3",
+        "type": "change",
+        "z": "919c77f6f15703cf",
+        "name": "Enabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 500,
+        "wires": [
+            [
+                "2611c06a89a84b2c",
+                "897b0cb87ae839a1",
+                "ee1ccfa8c561946a"
+            ]
+        ]
+    },
+    {
+        "id": "4013c28a89e567c4",
+        "type": "debug",
+        "z": "919c77f6f15703cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b44112215f703591",
+        "type": "ui_ui_control",
+        "z": "645dcdc52c80e548",
+        "name": "",
+        "events": "change",
+        "x": 80,
+        "y": 40,
+        "wires": [
+            [
+                "844e4ebb28f6d57b",
+                "0735a06e3d552e75",
+                "5f73c7263baed22a"
+            ]
+        ]
+    },
+    {
+        "id": "844e4ebb28f6d57b",
+        "type": "switch",
+        "z": "645dcdc52c80e548",
+        "name": "Check MATAIXE",
+        "property": "MATAIXE",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 40,
+        "wires": [
+            [
+                "7cb83cd2f3e17f60"
+            ]
+        ]
+    },
+    {
+        "id": "a3c3b7cb82db7f65",
+        "type": "MSSQL",
+        "z": "645dcdc52c80e548",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: View_Info_Taixe",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "SELECT * \nFROM TAIXE \nWHERE MATAIXE = {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 800,
+        "y": 40,
+        "wires": [
+            [
+                "c4eeea5c330d7b40",
+                "583aaca8448b6358",
+                "cb88aa754d13cb4f",
+                "8c6bfd6d09e1ef37",
+                "165d7f6c714170cf"
+            ]
+        ]
+    },
+    {
+        "id": "7cb83cd2f3e17f60",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "get MATAIXE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MATAIXE",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 40,
+        "wires": [
+            [
+                "a3c3b7cb82db7f65"
+            ]
+        ]
+    },
+    {
+        "id": "c4eeea5c330d7b40",
+        "type": "ui_text",
+        "z": "645dcdc52c80e548",
+        "group": "3b4bea4f255b43d3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "HOTEN",
+        "format": "{{msg.payload[0].HOTEN}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1060,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "583aaca8448b6358",
+        "type": "ui_text",
+        "z": "645dcdc52c80e548",
+        "group": "3b4bea4f255b43d3",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "SĐT",
+        "format": "{{msg.payload[0].SODIENTHOAI}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1050,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cb88aa754d13cb4f",
+        "type": "ui_text",
+        "z": "645dcdc52c80e548",
+        "group": "3b4bea4f255b43d3",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Số xe",
+        "format": "{{msg.payload[0].BIENSOXE}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1050,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8c6bfd6d09e1ef37",
+        "type": "ui_text",
+        "z": "645dcdc52c80e548",
+        "group": "3b4bea4f255b43d3",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Khu vực hoạt động",
+        "format": "{{msg.payload[0].KHUVUCHOATDONG}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1090,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "165d7f6c714170cf",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "save KHUVUCHOATDONG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "KHUVUCHOATDONG",
+                "pt": "flow",
+                "to": "payload[0].KHUVUCHOATDONG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c3dea55e7bc95375",
+        "type": "ui_button",
+        "z": "645dcdc52c80e548",
+        "name": "",
+        "group": "dcd6d47e547731fa",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Nhận đơn hàng",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "0735a06e3d552e75",
+                "5f73c7263baed22a",
+                "859a4a0a381f6d82"
+            ]
+        ]
+    },
+    {
+        "id": "7bc4065da3bd13b6",
+        "type": "ui_button",
+        "z": "645dcdc52c80e548",
+        "name": "",
+        "group": "dcd6d47e547731fa",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Đã giao",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "gray",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "83556475ac491eb6",
+                "2f1c03ec315ce28e",
+                "13feb68d53813bef"
+            ]
+        ]
+    },
+    {
+        "id": "5354e074a3c61c5a",
+        "type": "ui_table",
+        "z": "645dcdc52c80e548",
+        "group": "dcd6d47e547731fa",
+        "name": "Order",
+        "order": 4,
+        "width": 20,
+        "height": 9,
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 1050,
+        "y": 220,
+        "wires": [
+            [
+                "d233a7d1f57c573f",
+                "62bb0a066bd77ed8"
+            ]
+        ]
+    },
+    {
+        "id": "83556475ac491eb6",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "Disabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 100,
+        "y": 260,
+        "wires": [
+            [
+                "7bc4065da3bd13b6",
+                "65b80d06fbc5aead"
+            ]
+        ]
+    },
+    {
+        "id": "2f1c03ec315ce28e",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "Enabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "c3dea55e7bc95375"
+            ]
+        ]
+    },
+    {
+        "id": "5f73c7263baed22a",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "Disabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "c3dea55e7bc95375"
+            ]
+        ]
+    },
+    {
+        "id": "0735a06e3d552e75",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "Enabled",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 100,
+        "y": 220,
+        "wires": [
+            [
+                "7bc4065da3bd13b6",
+                "65b80d06fbc5aead"
+            ]
+        ]
+    },
+    {
+        "id": "a49e89be02e082e2",
+        "type": "MSSQL",
+        "z": "645dcdc52c80e548",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: XemDonHang",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC XemDonHang {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 800,
+        "y": 180,
+        "wires": [
+            [
+                "5354e074a3c61c5a"
+            ]
+        ]
+    },
+    {
+        "id": "859a4a0a381f6d82",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "get MATAIXE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MATAIXE",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "a49e89be02e082e2"
+            ]
+        ]
+    },
+    {
+        "id": "13feb68d53813bef",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "get MATAIXE",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "MATAIXE",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "b507eabd7daf97c5"
+            ]
+        ]
+    },
+    {
+        "id": "b507eabd7daf97c5",
+        "type": "MSSQL",
+        "z": "645dcdc52c80e548",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: TraCuuDonHangDaGiao",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC TraCuuDonHangDaGiao {{payload}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 830,
+        "y": 220,
+        "wires": [
+            [
+                "5354e074a3c61c5a",
+                "764f7e18dd0e2b2c"
+            ]
+        ]
+    },
+    {
+        "id": "d233a7d1f57c573f",
+        "type": "ui_text",
+        "z": "645dcdc52c80e548",
+        "group": "3b4bea4f255b43d3",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mã Đơn Hàng",
+        "format": "{{msg.payload.MADONHANG}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1080,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "65b80d06fbc5aead",
+        "type": "ui_button",
+        "z": "645dcdc52c80e548",
+        "name": "",
+        "group": "3b4bea4f255b43d3",
+        "order": 11,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Giao",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "{}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 250,
+        "y": 380,
+        "wires": [
+            [
+                "d703ed19c857c925"
+            ]
+        ]
+    },
+    {
+        "id": "62bb0a066bd77ed8",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "save MADONHANG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "MADONHANG",
+                "pt": "flow",
+                "to": "payload.MADONHANG",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d703ed19c857c925",
+        "type": "change",
+        "z": "645dcdc52c80e548",
+        "name": "get MADONHANG",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.MATAIXE",
+                "pt": "msg",
+                "to": "MATAIXE",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "payload.MADONHANG",
+                "pt": "msg",
+                "to": "MADONHANG",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "92f71d809cca1189"
+            ]
+        ]
+    },
+    {
+        "id": "92f71d809cca1189",
+        "type": "MSSQL",
+        "z": "645dcdc52c80e548",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: ChonDonHang",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC ChonDonHang {{payload.MATAIXE}}, {{payload.MADONHANG}}",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 800,
+        "y": 380,
+        "wires": [
+            [
+                "89a009292a4832d8",
+                "859a4a0a381f6d82"
+            ]
+        ]
+    },
+    {
+        "id": "89a009292a4832d8",
+        "type": "ui_template",
+        "z": "645dcdc52c80e548",
+        "group": "dcd6d47e547731fa",
+        "name": "",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1060,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bfc8938242fb4647",
+        "type": "ui_text",
+        "z": "645dcdc52c80e548",
+        "group": "3b4bea4f255b43d3",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tổng thu nhập",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1080,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "764f7e18dd0e2b2c",
+        "type": "function",
+        "z": "645dcdc52c80e548",
+        "name": "Sum PHIVANCHUYEN",
+        "func": "var sum = 0\nfor (const x in msg.payload){\n    sum += (msg.payload[x].PHIVANCHUYEN || 0)\n}\n\nmsg.payload = sum\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 260,
+        "wires": [
+            [
+                "bfc8938242fb4647"
+            ]
+        ]
+    },
+    {
+        "id": "aed079a7d9699cc7",
+        "type": "ui_button",
+        "z": "645dcdc52c80e548",
+        "name": "Refresh",
+        "group": "3b4bea4f255b43d3",
+        "order": 12,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "859a4a0a381f6d82"
+            ]
+        ]
+    },
+    {
+        "id": "649b0c764f4ada74",
+        "type": "ui_form",
+        "z": "7e76ceb3aaed06cf",
+        "name": "Driver",
+        "label": "",
+        "group": "ba7942857b9778aa",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Tên Tài Xế",
+                "value": "HOTEN",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "SĐT",
+                "value": "SODIENTHOAI",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Địa chỉ",
+                "value": "DIACHI",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Email",
+                "value": "EMAIL",
+                "type": "email",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "CMND",
+                "value": "CMND",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Số Xe Đăng Kí",
+                "value": "BIENSOXE",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Khu Vực Đăng Kí",
+                "value": "KHUVUCHOATDONG",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "STK Ngân Hàng",
+                "value": "SOTAIKHOANNGANHANG",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Chi Nhánh Ngân Hàng",
+                "value": "CHINHANHNGANHANG",
+                "type": "text",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "HOTEN": "",
+            "SODIENTHOAI": "",
+            "DIACHI": "",
+            "EMAIL": "",
+            "CMND": "",
+            "BIENSOXE": "",
+            "KHUVUCHOATDONG": "",
+            "SOTAIKHOANNGANHANG": "",
+            "CHINHANHNGANHANG": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": false,
+        "className": "",
+        "x": 70,
+        "y": 120,
+        "wires": [
+            [
+                "2b089551fc95e324"
+            ]
+        ]
+    },
+    {
+        "id": "e9e84102670fe986",
+        "type": "ui_form",
+        "z": "7e76ceb3aaed06cf",
+        "name": "Partner",
+        "label": "",
+        "group": "d18a087972dcb6b3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Tên Đối Tác",
+                "value": "TENDOITAC",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Người Đại Diện",
+                "value": "NGUOIDAIDIEN",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Địa Chỉ",
+                "value": "DIACHIKINHDOANH",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Thành Phố",
+                "value": "THANHPHO",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Quận",
+                "value": "QUAN",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Số Chi Nhánh",
+                "value": "SOCHINHANH",
+                "type": "number",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Số đơn hàng / ngày",
+                "value": "SOLUONGDONHANGMOINGAY",
+                "type": "number",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Loại Hàng",
+                "value": "LOAIHANGVANCHUYEN",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "SĐT",
+                "value": "SODIENTHOAI",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Email",
+                "value": "EMAIL",
+                "type": "email",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "TENDOITAC": "",
+            "NGUOIDAIDIEN": "",
+            "DIACHIKINHDOANH": "",
+            "THANHPHO": "",
+            "QUAN": "",
+            "SOCHINHANH": "",
+            "SOLUONGDONHANGMOINGAY": "",
+            "LOAIHANGVANCHUYEN": "",
+            "SODIENTHOAI": "",
+            "EMAIL": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": false,
+        "className": "",
+        "x": 80,
+        "y": 80,
+        "wires": [
+            [
+                "c560b6620fa10668"
+            ]
+        ]
+    },
+    {
+        "id": "b8a10d8b7b492b08",
+        "type": "ui_form",
+        "z": "7e76ceb3aaed06cf",
+        "name": "Customer",
+        "label": "",
+        "group": "a208abe02a85e417",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Tên Khách Hàng",
+                "value": "HOTEN",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "SĐT",
+                "value": "SODIENTHOAI",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Địa chỉ",
+                "value": "DIACHI",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Email",
+                "value": "EMAIL",
+                "type": "email",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "HOTEN": "",
+            "SODIENTHOAI": "",
+            "DIACHI": "",
+            "EMAIL": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": false,
+        "className": "",
+        "x": 80,
+        "y": 160,
+        "wires": [
+            [
+                "1f09d44011e7c661"
+            ]
+        ]
+    },
+    {
+        "id": "c560b6620fa10668",
+        "type": "MSSQL",
+        "z": "7e76ceb3aaed06cf",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: newlogin_DoiTac",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC newlogin_DoiTac N'{{payload.TENDOITAC}}', N'{{payload.NGUOIDAIDIEN}}', N'{{payload.DIACHIKINHDOANH}}', N'{{payload.THANHPHO}}', N'{{payload.QUAN}}', {{payload.SOCHINHANH}}, {{payload.SOLUONGDONHANGMOINGAY}}, N'{{payload.LOAIHANGVANCHUYEN}}', '{{payload.SODIENTHOAI}}', '{{payload.EMAIL}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 300,
+        "y": 80,
+        "wires": [
+            [
+                "205f3206a1a5db22",
+                "d4262b072b03f442"
+            ]
+        ]
+    },
+    {
+        "id": "205f3206a1a5db22",
+        "type": "debug",
+        "z": "7e76ceb3aaed06cf",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "2b089551fc95e324",
+        "type": "MSSQL",
+        "z": "7e76ceb3aaed06cf",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: newlogin_Taixe",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC newlogin_TaiXe N'{{payload.HOTEN}}', '{{payload.SODIENTHOAI}}', N'{{payload.DIACHI}}', '{{payload.EMAIL}}', '{{payload.CMND}}', '{{payload.BIENSOXE}}', N'{{payload.KHUVUCHOATDONG}}', '{{payload.SOTAIKHOANNGANHANG}}', '{{payload.CHINHANHNGANHANG}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 300,
+        "y": 120,
+        "wires": [
+            [
+                "205f3206a1a5db22",
+                "d4262b072b03f442"
+            ]
+        ]
+    },
+    {
+        "id": "1f09d44011e7c661",
+        "type": "MSSQL",
+        "z": "7e76ceb3aaed06cf",
+        "mssqlCN": "6eae2b5f8dbfb881",
+        "name": "SQL: newlogin_KhachHang",
+        "outField": "payload",
+        "returnType": 0,
+        "throwErrors": 1,
+        "query": "EXEC newlogin_KhachHang N'{{payload.HOTEN}}', '{{payload.SODIENTHOAI}}', N'{{payload.DIACHI}}', '{{payload.EMAIL}}'",
+        "modeOpt": "queryMode",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "editor",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "none",
+        "rows": "rows",
+        "rowsType": "msg",
+        "params": [],
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "205f3206a1a5db22",
+                "d4262b072b03f442"
+            ]
+        ]
+    },
+    {
+        "id": "d4262b072b03f442",
+        "type": "ui_template",
+        "z": "7e76ceb3aaed06cf",
+        "group": "a208abe02a85e417",
+        "name": "",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "format": "<div ng-bind-html=\"msg.sqlInfo[0].message\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 640,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    }
+]
