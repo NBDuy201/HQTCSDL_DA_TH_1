@@ -9,9 +9,9 @@ GO
 -- Cụ thể: 1.CHINHANH_SANPHAM --> 2.DONHANG
 -- =============================================
 DECLARE
-	@MaDonHang bigint = 3
+	@MaDonHang bigint = 1
 
-BEGIN TRAN
+BEGIN TRAN SET TRAN ISOLATION LEVEL SERIALIZABLE
 	-- Đơn hàng không ở tình trạng chưa đồng ý
 	IF EXISTS ( SELECT TINHTRANGDONHANG FROM DONHANG DH WHERE DH.MADONHANG = @MaDonHang AND DH.TINHTRANGDONHANG <> N'Chưa đồng ý')
 		BEGIN
